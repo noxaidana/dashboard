@@ -251,9 +251,10 @@ let charts = {};
 // URL из таблицы ИЮНЬ (существующий)
 const AUTO_API_URL = 'https://script.google.com/macros/s/AKfycbz1ADxI-TRfNAo7-149gSUZYH31ZuyTRbH9nSJ6SfaWiISePs82qDZhselonm4nmuHk/exec';
 
-// URL из таблицы "Смены + РНП" (скрипт #5 v2.1)
+// URL из таблицы "Смены + РНП" (скрипт #5 v2.1) — принудительно перезаписывает старый localStorage
 const RNP_API_DEFAULT = 'https://script.google.com/macros/s/AKfycbxlITE0nfoRxrxKZO92_Y5X82W7bZGd4hgNfl4FJpuHmiQ_HioATq6hacdUQYYsYmli/exec';
-const RNP_API_URL_SAVED = localStorage.getItem('rnpApiUrl') || RNP_API_DEFAULT;
+localStorage.setItem('rnpApiUrl', RNP_API_DEFAULT);
+const RNP_API_URL_SAVED = RNP_API_DEFAULT;
 
 // ══ ПЛАН ════════════════════════════════════════════════════════════════
 const PLAN = { online: 17500000, nsiti: 3500000, damu: 3000000 };
@@ -666,6 +667,4 @@ function buildChart(id, type, labels, datasets, extra) {
 // ══ UTILS ════════════════════════════════════════════════════════════════
 function fmt(n)      { return Math.round(n||0).toLocaleString('ru-RU') + ' ₸'; }
 function fmtShort(n) { if(n>=1000000)return(n/1000000).toFixed(1)+'М'; if(n>=1000)return(n/1000).toFixed(0)+'К'; return n; }
-function setEl(id,v) { const el=document.getElementById(id); if(el) el.textContent=v; }
-</script>
-<
+function setEl(id,v) { const el=d
