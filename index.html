@@ -8,53 +8,21 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f0f1a;color:#e8e8f0;min-height:100vh}
-
 .header{background:linear-gradient(135deg,#6d28d9,#ec4899);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .header h1{color:#fff;font-size:20px;font-weight:800}
 .header-right{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-
 .container{max-width:1100px;margin:0 auto;padding:24px 16px}
-
-/* Section divider */
-.section-title{font-size:13px;font-weight:800;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin:28px 0 14px;display:flex;align-items:center;gap:8px}
-.section-title::after{content:'';flex:1;height:1px;background:#2a2a4a}
-
-/* KPI cards */
 .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
 .kpi{background:#1a1a2e;border-radius:14px;padding:18px;border:1px solid #2a2a4a;position:relative;overflow:hidden}
 .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent)}
 .kpi.c1{--accent:#a855f7}.kpi.c2{--accent:#ec4899}.kpi.c3{--accent:#f59e0b}.kpi.c4{--accent:#22c55e}
-.kpi.c5{--accent:#3b82f6}.kpi.c6{--accent:#14b8a6}.kpi.c7{--accent:#f97316}.kpi.c8{--accent:#8b5cf6}
 .kpi-label{font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
 .kpi-value{font-size:22px;font-weight:800;color:#fff}
 .kpi-sub{font-size:12px;color:#6b7280;margin-top:3px}
-
-/* Progress bar */
-.progress-wrap{margin-top:8px}
-.progress-bar{height:6px;border-radius:3px;background:#2a2a4a;overflow:hidden}
-.progress-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,#6d28d9,#ec4899);transition:width .6s}
-.progress-label{font-size:11px;color:#6b7280;margin-top:4px}
-
-/* Charts */
 .charts-grid{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:16px}
 .charts-grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
 .card{background:#1a1a2e;border-radius:14px;padding:20px;border:1px solid #2a2a4a}
 .card-title{font-size:13px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;margin-bottom:16px}
-
-/* Conversion badge */
-.conv-big{display:flex;align-items:center;gap:16px;padding:16px 0}
-.conv-ring{position:relative;width:80px;height:80px;flex-shrink:0}
-.conv-ring svg{transform:rotate(-90deg)}
-.conv-ring .ring-bg{fill:none;stroke:#2a2a4a;stroke-width:8}
-.conv-ring .ring-fill{fill:none;stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset .8s}
-.conv-ring .ring-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.conv-ring .ring-pct{font-size:18px;font-weight:800;color:#fff}
-.conv-ring .ring-lbl{font-size:9px;color:#6b7280;margin-top:-2px}
-.conv-info{flex:1}
-.conv-info h3{font-size:14px;font-weight:700;margin-bottom:4px}
-.conv-info p{font-size:12px;color:#6b7280}
-
-/* Table */
 .tbl{width:100%;border-collapse:collapse;font-size:13px}
 .tbl th{text-align:left;padding:9px 10px;background:#13132a;color:#6b7280;font-size:11px;font-weight:700;text-transform:uppercase;border-bottom:1px solid #2a2a4a}
 .tbl td{padding:9px 10px;border-bottom:1px solid #1e1e38;color:#e8e8f0}
@@ -63,137 +31,58 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700}
 .bon{background:#2e1065;color:#c084fc}.boff{background:#500724;color:#f9a8d4}
 .bns{background:#052e16;color:#86efac}.bdm{background:#431407;color:#fdba74}
-
-/* Status dot */
-.dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:4px}
-.dot-green{background:#22c55e}.dot-yellow{background:#f59e0b}.dot-red{background:#ef4444}
-
-/* Import */
-.import-zone{background:#13132a;border:2px dashed #2a2a4a;border-radius:14px;padding:28px;text-align:center;margin-bottom:24px;cursor:pointer;transition:border-color .2s}
+.import-zone{background:#13132a;border:2px dashed #2a2a4a;border-radius:14px;padding:22px;text-align:center;margin-bottom:24px;cursor:pointer;transition:border-color .2s}
 .import-zone:hover{border-color:#6d28d9}
 .import-zone.drag{border-color:#ec4899;background:#1a1238}
-.import-zone p{color:#6b7280;font-size:14px;margin-top:8px}
-.import-zone .icon{font-size:36px;margin-bottom:8px}
-
-.url-row{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.import-zone p{color:#6b7280;font-size:13px;margin-top:6px}
+.import-zone .icon{font-size:32px;margin-bottom:6px}
+.url-row{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
 .url-input{flex:1;padding:10px 14px;background:#13132a;border:1.5px solid #2a2a4a;border-radius:9px;color:#e8e8f0;font-size:13px;outline:none;font-family:inherit;min-width:200px}
 .url-input:focus{border-color:#6d28d9}
 .btn{padding:10px 18px;border:none;border-radius:9px;cursor:pointer;font-size:13px;font-weight:700;font-family:inherit;transition:all .15s}
 .btn-purple{background:#6d28d9;color:#fff}.btn-purple:hover{background:#5b21b6}
-.btn-teal{background:#0d9488;color:#fff}.btn-teal:hover{background:#0f766e}
 .btn-sm{padding:7px 13px;font-size:12px}
-
 .period-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
 .ptab{padding:7px 16px;border:1.5px solid #2a2a4a;background:#13132a;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;color:#6b7280;transition:all .15s;font-family:inherit}
 .ptab.active{background:#6d28d9;color:#fff;border-color:#6d28d9}
-
 .empty{text-align:center;padding:40px;color:#4b5563}
 .empty .ico{font-size:40px;margin-bottom:10px}
-.loading{text-align:center;padding:20px;color:#6b7280;font-size:13px}
-
-/* RNP status bar */
-.rnp-status{display:flex;align-items:center;gap:8px;padding:10px 16px;background:#13132a;border-radius:10px;margin-bottom:16px;font-size:12px;color:#6b7280}
-.rnp-status .ok{color:#22c55e}.rnp-status .err{color:#ef4444}.rnp-status .warn{color:#f59e0b}
-
-/* Top products mini list */
-.prod-row{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #1e1e38}
-.prod-row:last-child{border-bottom:none}
-.prod-bar{flex:1;height:5px;border-radius:3px;background:#2a2a4a;overflow:hidden}
-.prod-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,#a855f7,#ec4899)}
-.prod-name{min-width:130px;font-size:12px;color:#e8e8f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.prod-rev{min-width:80px;text-align:right;font-size:12px;font-weight:700;color:#a855f7}
-.prod-cnt{min-width:30px;text-align:right;font-size:11px;color:#6b7280}
-
-@media(max-width:700px){
-  .kpi-grid{grid-template-columns:1fr 1fr}
-  .charts-grid,.charts-grid2{grid-template-columns:1fr}
-}
+.empty small{font-size:12px;color:#374151;display:block;margin-top:8px}
+@media(max-width:700px){.kpi-grid{grid-template-columns:1fr 1fr}.charts-grid,.charts-grid2{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
 <div class="header">
-  <h1>📊 Аналитика — НСИТИ + ДАМУ</h1>
+  <h1>📊 Аналитика выручки — НСИТИ + ДАМУ</h1>
   <div class="header-right">
     <span id="lastUpdate" style="font-size:12px;color:rgba(255,255,255,.6)"></span>
-    <button class="btn btn-sm" style="background:rgba(255,255,255,.15);color:#fff" onclick="reloadAll()">🔄 Обновить</button>
-    <button class="btn btn-sm" style="background:rgba(255,255,255,.15);color:#fff" onclick="document.getElementById('importSection').scrollIntoView({behavior:'smooth'})">⬆ Данные</button>
+    <button class="btn btn-sm" style="background:rgba(255,255,255,.15);color:#fff" onclick="reloadApi()">🔄 Обновить</button>
   </div>
 </div>
 
 <div class="container">
 
-  <!-- ══════ БЛОК 1: ПРОДАЖИ / РНП ══════ -->
-  <div class="section-title">📈 Продажи и конверсия <span style="font-size:10px;color:#4b5563;font-weight:400;text-transform:none">(из таблицы Смены + РНП)</span></div>
-
-  <!-- RNP URL input -->
-  <div class="url-row" style="margin-bottom:16px">
-    <input class="url-input" id="rnpUrl" placeholder="URL Apps Script из таблицы 'Смены + РНП' (скрипт #5)">
-    <button class="btn btn-teal" onclick="loadRnpData()">📥 Загрузить РНП</button>
-  </div>
-
-  <!-- RNP KPI -->
-  <div class="kpi-grid" id="rnpKpiGrid">
-    <div class="kpi c5"><div class="kpi-label">🎯 Конверсия от ЦА</div><div class="kpi-value" id="rnpConversion">—</div><div class="kpi-sub" id="rnpConvSub">норма ≥60%</div></div>
-    <div class="kpi c6"><div class="kpi-label">🎉 Мероприятий</div><div class="kpi-value" id="rnpEvents">—</div><div class="kpi-sub" id="rnpEventsSub">—</div></div>
-    <div class="kpi c7"><div class="kpi-label">🧾 Средний чек</div><div class="kpi-value" id="rnpAvgCheck">—</div><div class="kpi-sub">за мероприятие</div></div>
-    <div class="kpi c8">
-      <div class="kpi-label">💰 Продано сегодня</div>
-      <div class="kpi-value" id="rnpTodayRevenue">—</div>
-      <div class="kpi-sub" id="rnpTodaySub">—</div>
-    </div>
-  </div>
-
-  <!-- RNP charts: top products + conversion trend -->
-  <div class="charts-grid2" style="margin-bottom:16px">
-    <div class="card">
-      <div class="card-title">🏆 Топ пакетов — продажи</div>
-      <div id="rnpProductsContainer"><div class="loading">Загрузите данные РНП</div></div>
-    </div>
-    <div class="card">
-      <div class="card-title">📉 Конверсия по дням</div>
-      <canvas id="chartConversion" height="240"></canvas>
-    </div>
-  </div>
-
-  <!-- RNP managers + weekly rating -->
-  <div class="charts-grid2" style="margin-bottom:28px">
-    <div class="card">
-      <div class="card-title">👤 Менеджеры — конверсия</div>
-      <canvas id="chartRnpManagers" height="200"></canvas>
-    </div>
-    <div class="card">
-      <div class="card-title">📆 Конверсия по неделям</div>
-      <canvas id="chartWeekly" height="200"></canvas>
-    </div>
-  </div>
-
-  <!-- ══════ БЛОК 2: ПРОВЕДЁННЫЕ МЕРОПРИЯТИЯ (ИЮНЬ) ══════ -->
-  <div class="section-title">🎪 Проведённые мероприятия <span style="font-size:10px;color:#4b5563;font-weight:400;text-transform:none">(из таблицы ИЮНЬ)</span></div>
-
-  <!-- Import -->
-  <div id="importSection">
+  <div style="margin-bottom:24px">
     <div class="url-row">
-      <input class="url-input" id="apiUrl" placeholder="URL скрипта из таблицы ИЮНЬ (уже настроен — заполнится автоматически)">
-      <button class="btn btn-purple" onclick="loadFromApi()">🔄 Загрузить ИЮНЬ</button>
+      <input class="url-input" id="apiUrl" placeholder="URL скрипта /exec — Google Apps Script doGet">
+      <button class="btn btn-purple" onclick="loadFromApi()">🔄 Загрузить</button>
     </div>
     <div class="import-zone" id="dropZone">
       <div class="icon">📂</div>
-      <strong style="color:#e8e8f0">Перетащи CSV из Google Sheets</strong>
-      <p>или нажми и выбери файл<br><small>Файл → Поделиться → Опубликовать → CSV → скачай</small></p>
+      <strong style="color:#e8e8f0">Перетащи CSV или JSON</strong>
+      <p>или нажми и выбери файл</p>
       <input type="file" id="fileInput" accept=".csv,.json" style="display:none">
     </div>
   </div>
 
-  <!-- Period -->
-  <div class="period-tabs" id="periodTabs">
+  <div class="period-tabs">
     <button class="ptab active" onclick="setPeriod('all',this)">Всё время</button>
     <button class="ptab" onclick="setPeriod('1-10',this)">1–10</button>
     <button class="ptab" onclick="setPeriod('11-20',this)">11–20</button>
     <button class="ptab" onclick="setPeriod('21-',this)">21–конец</button>
   </div>
 
-  <!-- KPI (ИЮНЬ) -->
   <div class="kpi-grid">
     <div class="kpi c1"><div class="kpi-label">💻 Онлайн</div><div class="kpi-value" id="kpiOnline">—</div><div class="kpi-sub" id="kpiOnlineN">—</div></div>
     <div class="kpi c2"><div class="kpi-label">🏢 Офф НСИТИ</div><div class="kpi-value" id="kpiNsiti">—</div><div class="kpi-sub" id="kpiNsitiN">—</div></div>
@@ -201,315 +90,134 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="kpi c4"><div class="kpi-label">💰 Итого</div><div class="kpi-value" id="kpiTotal">—</div><div class="kpi-sub" id="kpiTotalN">—</div></div>
   </div>
 
-  <!-- Plan table -->
-  <div class="card" style="margin-bottom:16px">
-    <div class="card-title">План · Выполнение · Прогноз (текущий месяц)</div>
-    <div style="overflow-x:auto"><table class="tbl" id="planTable"></table></div>
-    <div style="font-size:11px;color:#6b7280;margin-top:10px">Прогноз = выполнение ÷ прошедшие дни × всего дней в месяце.</div>
-  </div>
-
-  <!-- Charts row 1 -->
   <div class="charts-grid">
-    <div class="card">
-      <div class="card-title">Выручка по дням</div>
-      <canvas id="chartDays" height="200"></canvas>
-    </div>
-    <div class="card">
-      <div class="card-title">По каналам</div>
-      <canvas id="chartChannels" height="200"></canvas>
-    </div>
+    <div class="card"><div class="card-title">Выручка по дням</div><canvas id="chartDays" height="200"></canvas></div>
+    <div class="card"><div class="card-title">По каналам</div><canvas id="chartChannels" height="200"></canvas></div>
   </div>
 
-  <!-- Charts row 2 -->
   <div class="charts-grid2">
-    <div class="card">
-      <div class="card-title">По менеджерам</div>
-      <canvas id="chartManagers" height="220"></canvas>
-    </div>
-    <div class="card">
-      <div class="card-title">Топ пакетов (факт)</div>
-      <canvas id="chartPackages" height="220"></canvas>
-    </div>
+    <div class="card"><div class="card-title">По менеджерам</div><canvas id="chartManagers" height="220"></canvas></div>
+    <div class="card"><div class="card-title">Топ пакетов</div><canvas id="chartPackages" height="220"></canvas></div>
   </div>
 
-  <!-- Table -->
   <div class="card">
     <div class="card-title">Все записи</div>
-    <div style="overflow-x:auto"><div id="tableContainer"><div class="empty"><div class="ico">📭</div><p>Загрузи данные выше</p></div></div></div>
+    <div style="overflow-x:auto">
+      <div id="tableContainer">
+        <div class="empty">
+          <div class="ico">📭</div>
+          <p>Данные ещё не загружены</p>
+          <small>Введи URL скрипта выше и нажми «Загрузить»</small>
+        </div>
+      </div>
+    </div>
   </div>
 
 </div>
 
 <script>
-// ══ ДАННЫЕ ══════════════════════════════════════════════════════════════
-let allData    = [];
-let rnpData    = null;
-let currentPeriod = 'all';
-let charts = {};
+let allData = [], currentPeriod = 'all', charts = {};
 
-// ══ API URLs ════════════════════════════════════════════════════════════
-// URL из таблицы ИЮНЬ (существующий)
+// Вставь сюда актуальный URL после переразвёртывания скрипта
 const AUTO_API_URL = 'https://script.google.com/macros/s/AKfycbz1ADxI-TRfNAo7-149gSUZYH31ZuyTRbH9nSJ6SfaWiISePs82qDZhselonm4nmuHk/exec';
 
-// URL из таблицы "Смены + РНП" (скрипт #5 v2.1) — принудительно перезаписывает старый localStorage
-const RNP_API_DEFAULT = 'https://script.google.com/macros/s/AKfycbxlITE0nfoRxrxKZO92_Y5X82W7bZGd4hgNfl4FJpuHmiQ_HioATq6hacdUQYYsYmli/exec';
-localStorage.setItem('rnpApiUrl', RNP_API_DEFAULT);
-const RNP_API_URL_SAVED = RNP_API_DEFAULT;
-
-// ══ ПЛАН ════════════════════════════════════════════════════════════════
-const PLAN = { online: 17500000, nsiti: 3500000, damu: 3000000 };
-
-// ══ INIT ════════════════════════════════════════════════════════════════
-window.addEventListener('load', () => {
-  document.getElementById('apiUrl').value = AUTO_API_URL;
-  if (RNP_API_URL_SAVED) {
-    document.getElementById('rnpUrl').value = RNP_API_URL_SAVED;
-  }
-  document.getElementById('lastUpdate').textContent = 'Загрузка…';
-  loadFromApi();
-  if (RNP_API_URL_SAVED) loadRnpData();
-  // автообновление каждые 5 минут
-  setInterval(reloadAll, 5 * 60 * 1000);
-});
-
-function reloadAll() {
-  loadFromApi();
-  const rnpUrl = document.getElementById('rnpUrl').value.trim();
-  if (rnpUrl) loadRnpData();
-}
-
-// ══ ЗАГРУЗКА ДАННЫХ РНП ═════════════════════════════════════════════════
-async function loadRnpData() {
-  const url = document.getElementById('rnpUrl').value.trim();
-  if (!url) { alert('Введите URL скрипта РНП'); return; }
-  localStorage.setItem('rnpApiUrl', url);
-
-  try {
-    const r = await fetch(url);
-    const d = await r.json();
-    rnpData = d;
-    renderRnp(d);
-  } catch(e) {
-    console.error('RNP load error:', e);
-    // Показываем тестовые данные для демо если API недоступен
-    renderRnpError();
-  }
-}
-
-function renderRnpError() {
-  ['rnpConversion','rnpEvents','rnpAvgCheck','rnpTodayRevenue'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = '–';
-  });
-}
-
-// ══ РЕНДЕР БЛОКА РНП ════════════════════════════════════════════════════
-function renderRnp(d) {
-  if (!d) return;
-
-  // KPI
-  const convColor = d.conversion >= 60 ? '#22c55e' : d.conversion >= 40 ? '#f59e0b' : '#ef4444';
-  setEl('rnpConversion', d.conversion + '%');
-  document.getElementById('rnpConversion').style.color = convColor;
-  setEl('rnpConvSub', d.conversion >= 60 ? '✅ В норме' : d.conversion >= 40 ? '⚠ Ниже нормы' : '🔴 Критично');
-
-  setEl('rnpEvents', d.events || '—');
-  setEl('rnpEventsSub', 'проведено с начала месяца');
-  setEl('rnpAvgCheck', d.avgCheck ? fmt(d.avgCheck) : '—');
-
-  // Карточка "Продано сегодня"
-  const todayRev   = d.todayRevenue || 0;
-  const todayCount = d.todayCount   || 0;
-  const todayDate  = d.todayDate    || '';
-  setEl('rnpTodayRevenue', todayRev ? fmt(todayRev) + ' ₸' : '—');
-  setEl('rnpTodaySub', todayCount
-    ? todayCount + ' продаж' + (todayDate ? ' · ' + todayDate : '')
-    : todayDate ? todayDate : 'нет данных');
-
-  // Топ пакетов
-  renderTopProducts(d.products || []);
-
-  // Конверсия по дням
-  renderConversionChart(d.dailyData || []);
-
-  // Менеджеры (конверсия)
-  renderRnpManagersChart(d.managers || []);
-
-  // Недельный рейтинг
-  renderWeeklyChart(d.weeklyRating || []);
-}
-
-function renderTopProducts(products) {
-  const el = document.getElementById('rnpProductsContainer');
-  if (!products.length) { el.innerHTML = '<div class="loading">Нет данных</div>'; return; }
-
-  const top = products.slice(0, 8);
-  const maxRev = top[0].revenue;
-
-  let html = '';
-  top.forEach(function(p) {
-    const pct = maxRev > 0 ? Math.round(p.revenue / maxRev * 100) : 0;
-    html += '<div class="prod-row">'
-      + '<div class="prod-name" title="' + p.name + '">' + p.name + '</div>'
-      + '<div class="prod-bar"><div class="prod-bar-fill" style="width:' + pct + '%"></div></div>'
-      + '<div class="prod-cnt">' + (p.count || '—') + ' шт</div>'
-      + '<div class="prod-rev">' + fmtShort(p.revenue) + '</div>'
-      + '</div>';
-  });
-  el.innerHTML = html;
-}
-
-function renderConversionChart(daily) {
-  if (!daily.length) return;
-  const labels = daily.map(d => d.date);
-  const convData = daily.map(d => d.conversion);
-  const norm = daily.map(() => 60); // линия нормы
-
-  buildChart('chartConversion', 'line', labels, [
-    {
-      label: 'Конверсия %',
-      data: convData,
-      borderColor: '#a855f7',
-      backgroundColor: 'rgba(168,85,247,.15)',
-      fill: true,
-      tension: 0.3,
-      pointBackgroundColor: convData.map(v => v >= 60 ? '#22c55e' : v >= 40 ? '#f59e0b' : '#ef4444'),
-      pointRadius: 4,
-    },
-    {
-      label: 'Норма 60%',
-      data: norm,
-      borderColor: '#22c55e',
-      borderDash: [5,5],
-      borderWidth: 1,
-      pointRadius: 0,
-      fill: false,
-    }
-  ], {});
-}
-
-function renderRnpManagersChart(managers) {
-  if (!managers.length) return;
-  buildChart('chartRnpManagers', 'bar',
-    managers.map(m => m.name),
-    [
-      {
-        label: 'Конверсия %',
-        data: managers.map(m => m.conversion),
-        backgroundColor: managers.map(m =>
-          m.conversion >= 60 ? 'rgba(34,197,94,.8)' :
-          m.conversion >= 40 ? 'rgba(245,158,11,.8)' :
-          'rgba(239,68,68,.8)'
-        ),
-        borderWidth: 0,
-        yAxisID: 'y',
-      },
-      {
-        label: 'Выручка',
-        data: managers.map(m => m.revenue),
-        backgroundColor: 'rgba(168,85,247,.3)',
-        borderColor: '#a855f7',
-        borderWidth: 2,
-        type: 'line',
-        yAxisID: 'y2',
-        tension: 0.3,
-      }
-    ],
-    { multiAxis: true }
-  );
-}
-
-function renderWeeklyChart(weeklyRating) {
-  if (!weeklyRating.length) return;
-  const labels = weeklyRating.map(w => w.week || w.manager || '');
-  const convData = weeklyRating.map(w => w.conversion);
-  const revData = weeklyRating.map(w => w.revenue);
-
-  buildChart('chartWeekly', 'bar', labels, [
-    {
-      label: 'Конверсия %',
-      data: convData,
-      backgroundColor: convData.map(v => v >= 60 ? 'rgba(34,197,94,.8)' : v >= 40 ? 'rgba(245,158,11,.8)' : 'rgba(239,68,68,.8)'),
-      borderWidth: 0,
-      yAxisID: 'y',
-    }
-  ], {});
-}
-
-// ══ ЗАГРУЗКА ИЮНЬ ════════════════════════════════════════════════════════
+// ── ФАЙЛОВЫЙ ИМПОРТ (исправлен) ───────────────────────────────
 document.getElementById('dropZone').addEventListener('click', () => document.getElementById('fileInput').click());
 document.getElementById('dropZone').addEventListener('dragover', e => { e.preventDefault(); e.currentTarget.classList.add('drag'); });
 document.getElementById('dropZone').addEventListener('dragleave', e => e.currentTarget.classList.remove('drag'));
-document.getElementById('dropZone').addEventListener('drop', e => {
-  e.preventDefault(); e.currentTarget.classList.remove('drag');
-  handleFile(e.dataTransfer.files[0]);
-});
+document.getElementById('dropZone').addEventListener('drop', e => { e.preventDefault(); e.currentTarget.classList.remove('drag'); handleFile(e.dataTransfer.files[0]); });
 document.getElementById('fileInput').addEventListener('change', e => handleFile(e.target.files[0]));
 
 function handleFile(file) {
   if (!file) return;
   const fr = new FileReader();
   fr.onload = ev => {
-    if (file.name.endsWith('.json')) {
-      try { const d = JSON.parse(ev.target.result); loadData(d.data || d); } catch(err) { alert('Ошибка: ' + err); }
-    } else {
-      loadData(parseCSV(ev.target.result));
-    }
+    try {
+      if (file.name.endsWith('.json')) { const d = JSON.parse(ev.target.result); loadData(d.data || d); }
+      else { loadData(parseCSV(ev.target.result)); }
+    } catch(err) { alert('Ошибка при чтении: ' + err.message); }
   };
   fr.readAsText(file);
 }
 
 function parseCSV(text) {
-  const lines = text.trim().split('\n');
-  const headers = lines[0].split(',').map(s => s.trim().replace(/^"|"$/g,''));
-  return lines.slice(1).map(line => {
-    const vals = line.split(',').map(s => s.trim().replace(/^"|"$/g,''));
-    const obj = {};
-    headers.forEach((h,i) => obj[h] = vals[i] || '');
-    return obj;
+  const lines = text.trim().split(/\r?\n/);
+  if (lines.length < 2) return [];
+  const headers = splitLine(lines[0]);
+  return lines.slice(1).filter(l => l.trim()).map(l => {
+    const v = splitLine(l), o = {};
+    headers.forEach((h, i) => o[h] = v[i] !== undefined ? v[i] : '');
+    return o;
   });
 }
 
-async function loadFromApi() {
-  const url = document.getElementById('apiUrl').value.trim();
-  if (!url) return;
-  try {
-    const r = await fetch(url);
-    const d = await r.json();
-    loadData(d.data || d);
-  } catch(e) {
-    console.error('ИЮНЬ API error:', e);
+function splitLine(line) {
+  const r = []; let cur = '', inQ = false;
+  for (let i = 0; i < line.length; i++) {
+    const c = line[i];
+    if (c === '"') { inQ = !inQ; }
+    else if (c === ',' && !inQ) { r.push(cur.trim()); cur = ''; }
+    else cur += c;
   }
+  r.push(cur.trim()); return r;
 }
 
-function loadData(data) {
-  allData = data.map(row => ({
-    date:   row['Дата']     || row['date']   || '',
-    mgr:    row['Менеджер'] || row['mgr']    || '',
-    branch: row['Филиал']   || row['branch'] || '',
-    chan:    row['Канал']    || row['chan']   || '',
-    pkg:    row['Пакет']    || row['pkg']    || '',
-    amt:    parseFloat(String(row['Сумма']||row['amt']||0).replace(/\s/g,'')) || 0,
-  })).filter(r => r.amt > 0);
+// ── API ЗАГРУЗКА ──────────────────────────────────────────────
+async function loadFromApi() {
+  const url = document.getElementById('apiUrl').value.trim();
+  if (!url) { alert('Введи URL скрипта'); return; }
+  setStatus('Загрузка…');
+  try {
+    const r = await fetch(url, { redirect: 'follow' });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const text = await r.text();
+    if (!text || !text.trim()) throw new Error(
+      'Сервер вернул пустой ответ.\n\nЧто сделать:\n' +
+      '1. Переразверни скрипт (Развернуть → Новое развёртывание)\n' +
+      '2. Запусти backfillFromDay1() вручную\n' +
+      '3. Обнови URL и нажми «Загрузить» снова'
+    );
+    const d = JSON.parse(text);
+    loadData(d.data || d);
+  } catch(e) { setStatus(''); alert('Ошибка: ' + e.message); }
+}
 
+function reloadApi() {
+  const url = document.getElementById('apiUrl').value.trim();
+  if (url) loadFromApi(); else alert('Введи URL скрипта');
+}
+
+// ── ДАННЫЕ ────────────────────────────────────────────────────
+function loadData(data) {
+  if (!Array.isArray(data) || !data.length) {
+    setStatus(''); alert('Данные пустые.'); return;
+  }
+  allData = data.map(row => ({
+    date:   String(row['Дата']     || row['date']   || ''),
+    mgr:    String(row['Менеджер'] || row['mgr']    || ''),
+    branch: String(row['Филиал']   || row['branch'] || ''),
+    chan:    String(row['Канал']    || row['chan']   || ''),
+    pkg:    String(row['Пакет']    || row['pkg']    || ''),
+    amt:    parseFloat(String(row['Сумма'] || row['amt'] || 0).replace(/[\s ]/g,'')) || 0,
+    src:    String(row['Тип']      || row['source'] || ''),
+  })).filter(r => r.amt > 0);
   const now = new Date();
-  document.getElementById('lastUpdate').textContent =
-    'ИЮНЬ обновлён ' + now.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}) + ' · ' + allData.length + ' записей';
+  setStatus('Обновлено ' + now.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}) + ' · ' + allData.length + ' записей');
   render();
 }
 
-// ══ ПЕРИОД ══════════════════════════════════════════════════════════════
+function setStatus(t) { document.getElementById('lastUpdate').textContent = t; }
+
+// ── ФИЛЬТР ПЕРИОДА ────────────────────────────────────────────
 function setPeriod(p, btn) {
   currentPeriod = p;
   document.querySelectorAll('.ptab').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  render();
+  btn.classList.add('active'); render();
 }
-
 function filterByPeriod(data) {
   if (currentPeriod === 'all') return data;
   return data.filter(r => {
-    const d = parseInt((r.date||'').slice(0,2)) || 0;
+    const d = parseInt((r.date || '').slice(0,2)) || 0;
     if (currentPeriod === '1-10')  return d >= 1  && d <= 10;
     if (currentPeriod === '11-20') return d >= 11 && d <= 20;
     if (currentPeriod === '21-')   return d >= 21;
@@ -517,154 +225,109 @@ function filterByPeriod(data) {
   });
 }
 
-// ══ РЕНДЕР (ИЮНЬ) ════════════════════════════════════════════════════════
+// ── РЕНДЕР ────────────────────────────────────────────────────
 function render() {
   const data   = filterByPeriod(allData);
   const online = data.filter(r => r.chan === 'Онлайн');
   const offN   = data.filter(r => r.chan === 'Оффлайн' && r.branch === 'НСИТИ');
   const offD   = data.filter(r => r.chan === 'Оффлайн' && r.branch === 'ДАМУ');
   const sum    = arr => arr.reduce((s,r) => s+r.amt, 0);
-
-  setEl('kpiOnline',  fmt(sum(online)));   setEl('kpiOnlineN',  online.length + ' записей');
-  setEl('kpiNsiti',   fmt(sum(offN)));     setEl('kpiNsitiN',   offN.length + ' записей');
-  setEl('kpiDamu',    fmt(sum(offD)));     setEl('kpiDamuN',    offD.length + ' записей');
-  setEl('kpiTotal',   fmt(sum(data)));     setEl('kpiTotalN',   data.length + ' записей');
-
-  renderPlanTable();
-  renderDaysChart(data);
-  renderChannelsChart(online, offN, offD);
-  renderManagersChart(data);
-  renderPackagesChart(data);
-  renderTable(data);
-}
-
-function renderPlanTable() {
-  const now = new Date();
-  const dayOfMonth  = now.getDate();
-  const daysInMonth = new Date(now.getFullYear(), now.getMonth()+1, 0).getDate();
-  const sum = arr => arr.reduce((s,r) => s+r.amt, 0);
-  const online = allData.filter(r => r.chan === 'Онлайн');
-  const offN   = allData.filter(r => r.chan === 'Оффлайн' && r.branch === 'НСИТИ');
-  const offD   = allData.filter(r => r.chan === 'Оффлайн' && r.branch === 'ДАМУ');
-  const rows = [
-    ['💻 Онлайн',    sum(online), PLAN.online],
-    ['🏢 Офф НСИТИ', sum(offN),   PLAN.nsiti],
-    ['🏢 Офф ДАМУ',  sum(offD),   PLAN.damu],
-  ];
-  const planTotal = PLAN.online + PLAN.nsiti + PLAN.damu;
-  const factTotal = sum(online) + sum(offN) + sum(offD);
-  rows.push(['💰 Итого', factTotal, planTotal]);
-
-  const badge = pct => {
-    const color = pct >= 100 ? '#22c55e' : pct >= 70 ? '#f59e0b' : '#f87171';
-    return '<span class="badge" style="background:'+color+'22;color:'+color+'">'+pct+'%</span>';
-  };
-
-  let html = '<thead><tr><th>Направление</th><th>План</th><th>Факт</th><th>%</th><th>Прогноз</th><th>%</th></tr></thead><tbody>';
-  rows.forEach(([label, fact, plan]) => {
-    const pct      = plan > 0 ? Math.round(fact/plan*100) : 0;
-    const forecast = dayOfMonth > 0 ? Math.round(fact/dayOfMonth*daysInMonth) : fact;
-    const fpct     = plan > 0 ? Math.round(forecast/plan*100) : 0;
-    html += '<tr><td><strong>'+label+'</strong></td><td>'+fmt(plan)+'</td><td>'+fmt(fact)+'</td><td>'+badge(pct)+'</td><td>'+fmt(forecast)+'</td><td>'+badge(fpct)+'</td></tr>';
-  });
-  html += '</tbody>';
-  document.getElementById('planTable').innerHTML = html;
+  set('kpiOnline', fmt(sum(online))); set('kpiOnlineN', online.length+' записей');
+  set('kpiNsiti',  fmt(sum(offN)));   set('kpiNsitiN',  offN.length+' записей');
+  set('kpiDamu',   fmt(sum(offD)));   set('kpiDamuN',   offD.length+' записей');
+  set('kpiTotal',  fmt(sum(data)));   set('kpiTotalN',  data.length+' записей');
+  renderDaysChart(data); renderChannelsChart(online, offN, offD);
+  renderManagersChart(data); renderPackagesChart(data); renderTable(data);
 }
 
 function renderDaysChart(data) {
   const byDay = {};
   data.forEach(r => {
-    const d = (r.date||'').slice(0,5);
-    if (!d) return;
+    const d = (r.date || '').slice(0,5);
+    if (!d || !/^\d{2}\.\d{2}/.test(d)) return;
     if (!byDay[d]) byDay[d] = {online:0,offN:0,offD:0};
-    if (r.chan==='Онлайн') byDay[d].online += r.amt;
-    else if (r.branch==='НСИТИ') byDay[d].offN += r.amt;
-    else if (r.branch==='ДАМУ')  byDay[d].offD += r.amt;
+    if (r.chan==='Онлайн') byDay[d].online+=r.amt;
+    else if (r.branch==='НСИТИ') byDay[d].offN+=r.amt;
+    else if (r.branch==='ДАМУ')  byDay[d].offD+=r.amt;
   });
   const labels = Object.keys(byDay).sort();
   buildChart('chartDays','bar',labels,[
-    {label:'Онлайн',    data:labels.map(d=>byDay[d].online), backgroundColor:'rgba(168,85,247,.8)',  borderColor:'#a855f7', borderWidth:2},
-    {label:'Офф НСИТИ', data:labels.map(d=>byDay[d].offN),   backgroundColor:'rgba(236,72,153,.8)', borderColor:'#ec4899', borderWidth:2},
-    {label:'Офф ДАМУ',  data:labels.map(d=>byDay[d].offD),   backgroundColor:'rgba(245,158,11,.8)', borderColor:'#f59e0b', borderWidth:2},
+    {label:'Онлайн',    data:labels.map(d=>byDay[d].online),backgroundColor:'rgba(168,85,247,.8)', borderColor:'#a855f7',borderWidth:2},
+    {label:'Офф НСИТИ', data:labels.map(d=>byDay[d].offN),  backgroundColor:'rgba(236,72,153,.8)',borderColor:'#ec4899',borderWidth:2},
+    {label:'Офф ДАМУ',  data:labels.map(d=>byDay[d].offD),  backgroundColor:'rgba(245,158,11,.8)',borderColor:'#f59e0b',borderWidth:2},
   ],{stacked:true});
 }
 
-function renderChannelsChart(online,offN,offD) {
-  const sum = arr=>arr.reduce((s,r)=>s+r.amt,0);
+function renderChannelsChart(online, offN, offD) {
+  const sum = arr => arr.reduce((s,r)=>s+r.amt,0);
   buildChart('chartChannels','doughnut',['Онлайн','Офф НСИТИ','Офф ДАМУ'],
     [{data:[sum(online),sum(offN),sum(offD)],backgroundColor:['#a855f7','#ec4899','#f59e0b'],borderWidth:0}]);
 }
 
 function renderManagersChart(data) {
-  const map={};
-  data.forEach(r=>{map[r.mgr]=(map[r.mgr]||0)+r.amt;});
-  const sorted=Object.entries(map).sort((a,b)=>b[1]-a[1]);
+  const map = {};
+  data.forEach(r => { map[r.mgr]=(map[r.mgr]||0)+r.amt; });
+  const sorted = Object.entries(map).sort((a,b)=>b[1]-a[1]);
   buildChart('chartManagers','bar',sorted.map(x=>x[0]),
     [{label:'Выручка',data:sorted.map(x=>x[1]),backgroundColor:'rgba(168,85,247,.8)',borderColor:'#a855f7',borderWidth:2}],
     {indexAxis:'y'});
 }
 
 function renderPackagesChart(data) {
-  const map={};
-  data.forEach(r=>{
-    const pkg=(r.pkg||'').split('·')[0].trim().split(' ')[0]||'Прочее';
-    map[pkg]=(map[pkg]||0)+r.amt;
-  });
-  const sorted=Object.entries(map).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  const map = {};
+  data.forEach(r => { const p=(r.pkg||'Прочее').split(' ').slice(0,2).join(' ')||'Прочее'; map[p]=(map[p]||0)+r.amt; });
+  const sorted = Object.entries(map).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  const colors = ['#a855f7','#ec4899','#f59e0b','#22c55e','#3b82f6','#f97316','#14b8a6','#8b5cf6'];
   buildChart('chartPackages','bar',sorted.map(x=>x[0]),
-    [{label:'Выручка',data:sorted.map(x=>x[1]),backgroundColor:['#a855f7','#ec4899','#f59e0b','#22c55e','#3b82f6','#f97316','#14b8a6','#8b5cf6'],borderWidth:0}]);
+    [{label:'Выручка',data:sorted.map(x=>x[1]),backgroundColor:colors,borderWidth:0}]);
 }
 
 function renderTable(data) {
   const el = document.getElementById('tableContainer');
-  if (!data.length) { el.innerHTML='<div class="empty"><div class="ico">📭</div><p>Нет данных</p></div>'; return; }
-  const byDate={};
-  data.forEach(r=>{(byDate[r.date]||(byDate[r.date]=[])).push(r);});
-  const dates=Object.keys(byDate).sort().reverse();
-  let html='<table class="tbl"><thead><tr><th>Дата</th><th>Менеджер</th><th>Канал</th><th>Филиал</th><th>Пакет</th><th style="text-align:right">Сумма</th></tr></thead><tbody>';
-  dates.forEach(d=>{
-    const rows=byDate[d];
-    const tot=rows.reduce((s,r)=>s+r.amt,0);
-    html+=`<tr style="background:#13132a"><td colspan="5" style="font-weight:700;color:#a855f7">${d}</td><td style="text-align:right;font-weight:700;color:#a855f7">${fmt(tot)}</td></tr>`;
-    rows.forEach(r=>{
-      html+=`<tr><td style="color:#6b7280;font-size:12px">──</td><td><b>${r.mgr}</b></td><td><span class="badge ${r.chan==='Онлайн'?'bon':'boff'}">${r.chan}</span></td><td><span class="badge ${r.branch==='НСИТИ'?'bns':'bdm'}">${r.branch}</span></td><td>${r.pkg}</td><td style="text-align:right;font-weight:700;color:#ec4899">${fmt(r.amt)}</td></tr>`;
+  if (!data.length) { el.innerHTML='<div class="empty"><div class="ico">📭</div><p>Нет данных за этот период</p></div>'; return; }
+  const byDate = {};
+  data.forEach(r => { (byDate[r.date]||(byDate[r.date]=[])).push(r); });
+  const dates = Object.keys(byDate).sort().reverse();
+  let html = '<table class="tbl"><thead><tr><th>Дата</th><th>Менеджер</th><th>Канал</th><th>Филиал</th><th>Пакет</th><th style="text-align:right">Сумма</th></tr></thead><tbody>';
+  dates.forEach(d => {
+    const rows = byDate[d];
+    const tot = rows.reduce((s,r)=>s+r.amt,0);
+    html += `<tr style="background:#13132a"><td colspan="5" style="font-weight:700;color:#a855f7">${d}</td><td style="text-align:right;font-weight:700;color:#a855f7">${fmt(tot)}</td></tr>`;
+    rows.forEach(r => {
+      const cc = r.chan==='Онлайн'?'bon':'boff';
+      const bc = r.branch==='НСИТИ'?'bns':'bdm';
+      const w  = r.src==='unknown'?' ⚠️':'';
+      html += `<tr><td style="color:#6b7280;font-size:12px">──</td><td><b>${r.mgr}</b></td><td><span class="badge ${cc}">${r.chan}</span></td><td><span class="badge ${bc}">${r.branch}</span></td><td>${r.pkg}${w}</td><td style="text-align:right;font-weight:700;color:#ec4899">${fmt(r.amt)}</td></tr>`;
     });
   });
-  el.innerHTML=html+'</tbody></table>';
+  el.innerHTML = html + '</tbody></table>';
 }
 
-// ══ CHART BUILDER ════════════════════════════════════════════════════════
-function buildChart(id, type, labels, datasets, extra) {
+function buildChart(id,type,labels,datasets,extra) {
   if (charts[id]) { charts[id].destroy(); delete charts[id]; }
-  const ctx = document.getElementById(id);
-  if (!ctx) return;
-
-  const isMultiAxis = extra && extra.multiAxis;
-
-  charts[id] = new Chart(ctx, {
-    type,
-    data: {labels, datasets},
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {labels:{color:'#9ca3af',font:{size:11}}},
-        tooltip: {callbacks:{label: c => ' '+(typeof c.parsed.y !== 'undefined' ? (c.dataset.yAxisID==='y'?c.parsed.y+'%':fmt(c.parsed.y)) : fmt(c.parsed))}}
-      },
-      scales: type==='doughnut' ? {} : {
-        x: {stacked:extra?.stacked, grid:{color:'#1e1e38'}, ticks:{color:'#6b7280'}},
-        y: {stacked:extra?.stacked, grid:{color:'#1e1e38'}, ticks:{color:'#6b7280', callback:v=>isMultiAxis?v+'%':fmtShort(v)}, position:'left'},
-        ...(isMultiAxis ? {y2:{grid:{display:false}, ticks:{color:'#6b7280',callback:v=>fmtShort(v)}, position:'right'}} : {}),
-        ...(extra?.indexAxis==='y' ? {
-          x:{grid:{color:'#1e1e38'},ticks:{color:'#6b7280',callback:v=>fmtShort(v)}},
-          y:{grid:{color:'#1e1e38'},ticks:{color:'#9ca3af'}}
-        } : {}),
-      },
-      indexAxis: extra?.indexAxis,
-    }
-  });
+  const ctx = document.getElementById(id); if (!ctx) return;
+  charts[id] = new Chart(ctx,{type,data:{labels,datasets},options:{
+    responsive:true,
+    plugins:{legend:{labels:{color:'#9ca3af',font:{size:11}}},tooltip:{callbacks:{label:c=>' '+fmt(c.parsed.y??c.parsed)}}},
+    scales: type==='doughnut'?{}:{
+      x:{stacked:extra?.stacked,grid:{color:'#1e1e38'},ticks:{color:'#6b7280'}},
+      y:{stacked:extra?.stacked,grid:{color:'#1e1e38'},ticks:{color:'#6b7280',callback:v=>fmtShort(v)}},
+      ...(extra?.indexAxis==='y'?{x:{grid:{color:'#1e1e38'},ticks:{color:'#6b7280',callback:v=>fmtShort(v)}},y:{grid:{color:'#1e1e38'},ticks:{color:'#9ca3af'}}}:{}),
+    },
+    indexAxis:extra?.indexAxis,
+  }});
 }
 
-// ══ UTILS ════════════════════════════════════════════════════════════════
-function fmt(n)      { return Math.round(n||0).toLocaleString('ru-RU') + ' ₸'; }
-function fmtShort(n) { if(n>=1000000)return(n/1000000).toFixed(1)+'М'; if(n>=1000)return(n/1000).toFixed(0)+'К'; return n; }
-function setEl(id,v) { const el=d
+function fmt(n)     { return Math.round(n||0).toLocaleString('ru-RU')+' тг'; }
+function fmtShort(n){ if(n>=1e6)return(n/1e6).toFixed(1)+'М';if(n>=1000)return(n/1000).toFixed(0)+'К';return n; }
+function set(id,v)  { const el=document.getElementById(id);if(el)el.textContent=v; }
+
+window.addEventListener('load', () => {
+  document.getElementById('apiUrl').value = AUTO_API_URL;
+  setStatus('Загрузка данных…');
+  loadFromApi();
+  setInterval(loadFromApi, 5*60*1000);
+});
+</script>
+</body>
+</html>
