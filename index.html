@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Аналитика выручки — НСИТИ + ДАМУ</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f0f1a;color:#e8e8f0;min-height:100vh}
@@ -87,6 +88,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="header-right">
     <span id="lastUpdate" style="font-size:12px;color:rgba(255,255,255,.65)"></span>
     <button class="btn btn-sm" style="background:rgba(255,255,255,.15);color:#fff" onclick="loadFromApi()">🔄 Обновить</button>
+    <button class="btn btn-sm" style="background:rgba(34,197,94,.25);color:#86efac;border:1px solid #22c55e44" onclick="exportExcel()">📊 Скачать Excel</button>
   </div>
 </div>
 
@@ -544,6 +546,144 @@ function buildChart(id,type,labels,datasets,extra) {
 function fmt(n){return Math.round(n||0).toLocaleString('ru-RU')+' тг';}
 function fmtShort(n){if(n>=1000000)return(n/1000000).toFixed(1)+'М';if(n>=1000)return(n/1000).toFixed(0)+'К';return n;}
 function set(id,v){const el=document.getElementById(id);if(el)el.textContent=v;}
+
+// ── EXCEL EXPORT ───────────────────────────────────────────────
+function exportExcel() {
+  if (!allData.length) { alert('Сначала загрузи данные'); return; }
+  const wb = XLSX.utils.book_new();
+  const data = filterByPeriod(allData);
+  const s = arr => arr.reduce((a,r)=>a+r.amt,0);
+  const now = new Date();
+  const day = now.getDate();
+  const dim = new Date(now.getFullYear(),now.getMonth()+1,0).getDate();
+  const periodLabel = {'all':'Весь месяц','1-10':'1–10','11-20':'11–20','21-':'21–конец'}[currentPeriod]||currentPeriod;
+
+  // ── Лист 1: Сводка / KPI ──
+  const ol = data.filter(r=>r.chan==='Онлайн');
+  const ns = data.filter(r=>r.chan==='Оффлайн'&&r.branch==='НСИТИ');
+  const dm = data.filter(r=>r.chan==='Оффлайн'&&r.branch==='ДАМУ');
+  const kpiRows = [
+    ['Аналитика выручки — НСИТИ + ДАМУ'],
+    ['Период:', periodLabel],
+    ['Дата отчёта:', now.toLocaleDateString('ru-RU')],
+    [],
+    ['Направление', 'Выручка (тг)', 'Кол-во записей'],
+    ['Онлайн',    s(ol), ol.length],
+    ['Офф НСИТИ', s(ns), ns.length],
+    ['Офф ДАМУ',  s(dm), dm.length],
+    ['ИТОГО',     s(data), data.length],
+  ];
+  const wsKpi = XLSX.utils.aoa_to_sheet(kpiRows);
+  wsKpi['!cols'] = [{wch:22},{wch:18},{wch:18}];
+  XLSX.utils.book_append_sheet(wb, wsKpi, 'KPI');
+
+  // ── Лист 2: План / Факт / Прогноз ──
+  const sumOl = s(allData.filter(r=>r.chan==='Онлайн'));
+  const sumNs = s(allData.filter(r=>r.chan==='Оффлайн'&&r.branch==='НСИТИ'));
+  const sumDm = s(allData.filter(r=>r.chan==='Оффлайн'&&r.branch==='ДАМУ'));
+  const planRows = [
+    ['Направление','План (тг)','Факт (тг)','% выполнения','Прогноз на месяц (тг)','Остаток (тг)'],
+    ...([
+      ['Онлайн',    sumOl, PLANS['Онлайн']],
+      ['Офф НСИТИ', sumNs, PLANS['Офф НСИТИ']],
+      ['Офф ДАМУ',  sumDm, PLANS['Офф ДАМУ']],
+      ['Итого',     sumOl+sumNs+sumDm, PLANS['Онлайн']+PLANS['Офф НСИТИ']+PLANS['Офф ДАМУ']],
+    ].map(([lbl,fact,plan])=>{
+      const pct = plan>0?+(fact/plan*100).toFixed(1):0;
+      const fc  = day>0 ?Math.round(fact/day*dim):fact;
+      return [lbl, plan, fact, pct+'%', fc, plan-fact];
+    }))
+  ];
+  const wsPlan = XLSX.utils.aoa_to_sheet(planRows);
+  wsPlan['!cols'] = [{wch:16},{wch:16},{wch:16},{wch:14},{wch:20},{wch:16}];
+  XLSX.utils.book_append_sheet(wb, wsPlan, 'План-Факт');
+
+  // ── Лист 3: РНП ──
+  const daily = rnpExtra ? filterRnpByPeriod(rnpExtra.daily||[]) : [];
+  let rLeads=0,rNonTgt=0,rTarget=0,rOlSold=0,rRevenue=0;
+  let rNsOn=0,rNsOff=0,rDmOn=0,rDmOff=0,rNsDone=0,rDmDone=0;
+  daily.forEach(d=>{
+    rLeads+=d.leads||0; rNonTgt+=d.nonTarget||0; rTarget+=d.target||0;
+    rOlSold+=d.onlineSold||0; rRevenue+=d.revenue||0;
+    rNsOn+=d.nsOnline||0; rNsOff+=d.offNs||0;
+    rDmOn+=d.dmOnline||0; rDmOff+=d.offDm||0;
+    rNsDone+=d.doneNs||0; rDmDone+=d.doneDm||0;
+  });
+  const hd = daily.length>0;
+  const rnpRows = [
+    ['РНП — Операционные показатели', periodLabel],
+    [],
+    ['НСИТИ',''],
+    ['Продано всего', hd?(rNsOn+rNsOff):allData.filter(r=>r.branch==='НСИТИ').length],
+    ['↳ Онлайн',     hd?rNsOn:allData.filter(r=>r.branch==='НСИТИ'&&r.chan==='Онлайн').length],
+    ['↳ Оффлайн',    hd?rNsOff:allData.filter(r=>r.branch==='НСИТИ'&&r.chan==='Оффлайн').length],
+    ['Проведено мероприятий', hd?rNsDone:'—'],
+    [],
+    ['ДАМУ',''],
+    ['Продано всего', hd?(rDmOn+rDmOff):allData.filter(r=>r.branch==='ДАМУ').length],
+    ['↳ Онлайн',     hd?rDmOn:allData.filter(r=>r.branch==='ДАМУ'&&r.chan==='Онлайн').length],
+    ['↳ Оффлайн',    hd?rDmOff:allData.filter(r=>r.branch==='ДАМУ'&&r.chan==='Оффлайн').length],
+    ['Проведено мероприятий', hd?rDmDone:'—'],
+    [],
+    ['ОНЛАЙН ОТДЕЛ',''],
+    ['Заявок всего',    hd?rLeads:'—'],
+    ['Целевые (ЦА)',     hd?rTarget:'—'],
+    ['Не целевые',       hd?rNonTgt:'—'],
+    ['Продано броней',   hd?rOlSold:allData.filter(r=>r.chan==='Онлайн').length],
+    ['Конверсия ЦА→продажа', hd&&rTarget>0?+(rOlSold/rTarget*100).toFixed(1)+'%':'—'],
+    ['Выручка факт (тг)', hd?rRevenue:(rnpExtra?rnpExtra.revenueFact||0:'—')],
+  ];
+  const wsRnp = XLSX.utils.aoa_to_sheet(rnpRows);
+  wsRnp['!cols'] = [{wch:28},{wch:16}];
+  XLSX.utils.book_append_sheet(wb, wsRnp, 'РНП');
+
+  // ── Лист 4: Рейтинг менеджеров ──
+  const mgrMap={};
+  data.forEach(r=>{ if(r.mgr) mgrMap[r.mgr]=(mgrMap[r.mgr]||0)+r.amt; });
+  const total=s(data)||1;
+  const mgrSorted=Object.entries(mgrMap).sort((a,b)=>b[1]-a[1]);
+  const mgrRows=[
+    ['#','Менеджер','Тип','Выручка (тг)','Доля %'],
+    ...mgrSorted.map(([name,amt],i)=>{
+      const chan=MGR_CHAN[name.toUpperCase()]||(data.filter(r=>r.mgr===name&&r.chan==='Онлайн').length>data.filter(r=>r.mgr===name&&r.chan==='Оффлайн').length?'Онлайн':'Офф');
+      return [i+1, name, chan, amt, +(amt/total*100).toFixed(1)+'%'];
+    })
+  ];
+  const wsMgr = XLSX.utils.aoa_to_sheet(mgrRows);
+  wsMgr['!cols'] = [{wch:5},{wch:16},{wch:10},{wch:16},{wch:10}];
+  XLSX.utils.book_append_sheet(wb, wsMgr, 'Менеджеры');
+
+  // ── Лист 5: Прибыль парков ──
+  const parkRows=[['Канал/Парк','Пакет','Выручка (тг)','Доля от итого %']];
+  [
+    {label:'Онлайн',  rows:data.filter(r=>r.chan==='Онлайн')},
+    {label:'НСИТИ',   rows:data.filter(r=>r.branch==='НСИТИ')},
+    {label:'ДАМУ',    rows:data.filter(r=>r.branch==='ДАМУ')},
+  ].forEach(({label,rows})=>{
+    const pkgMap={};
+    rows.forEach(r=>{const p=(r.pkg||'Прочее').trim()||'Прочее';pkgMap[p]=(pkgMap[p]||0)+r.amt;});
+    Object.entries(pkgMap).sort((a,b)=>b[1]-a[1]).forEach(([pkg,amt])=>{
+      parkRows.push([label, pkg, amt, +(amt/total*100).toFixed(1)+'%']);
+    });
+    parkRows.push([]);
+  });
+  const wsPark = XLSX.utils.aoa_to_sheet(parkRows);
+  wsPark['!cols'] = [{wch:12},{wch:28},{wch:16},{wch:16}];
+  XLSX.utils.book_append_sheet(wb, wsPark, 'Прибыль парков');
+
+  // ── Лист 6: Все записи ──
+  const recRows=[['Дата','Менеджер','Канал','Филиал','Пакет','Сумма (тг)']];
+  [...data].sort((a,b)=>a.date.localeCompare(b.date)).forEach(r=>{
+    recRows.push([r.date, r.mgr, r.chan, r.branch, r.pkg, r.amt]);
+  });
+  const wsRec = XLSX.utils.aoa_to_sheet(recRows);
+  wsRec['!cols'] = [{wch:12},{wch:14},{wch:10},{wch:10},{wch:30},{wch:14}];
+  XLSX.utils.book_append_sheet(wb, wsRec, 'Все записи');
+
+  // Скачать
+  const month = now.toLocaleString('ru-RU',{month:'long'});
+  XLSX.writeFile(wb, `Отчёт НСИТИ+ДАМУ ${month} ${now.getFullYear()}.xlsx`);
+}
 
 window.addEventListener('load',()=>{
   // Восстановить сохранённые URL
