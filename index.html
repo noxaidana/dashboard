@@ -431,15 +431,51 @@ async function loadRnpFromApi() {
   try {
     const r = await fetch(url, {redirect:'follow'});
     const text = await r.text();
+    if (!text.trim()) throw new Error('Пустой ответ');
     rnpExtra = JSON.parse(text);
     renderRnpSection(filterByPeriod(allData));
   } catch(e) { alert('Ошибка РНП: ' + e.message); }
 }
 
+function filterRnpByPeriod(daily) {
+  if (!daily || !daily.length) return daily || [];
+  if (currentPeriod === 'all') return daily;
+  return daily.filter(d => {
+    if (currentPeriod === '1-10')  return d.day >= 1  && d.day <= 10;
+    if (currentPeriod === '11-20') return d.day >= 11 && d.day <= 20;
+    if (currentPeriod === '21-')   return d.day >= 21;
+    return true;
+  });
+}
+
 function renderRnpSection(data) {
   const el = document.getElementById('rnpContainer');
 
-  // Из ОТЧЁТЫ (автоматически)
+  // ── Данные из РНП по периоду ──────────────────────────────
+  const daily = rnpExtra ? filterRnpByPeriod(rnpExtra.daily || []) : null;
+
+  let rLeads=0, rNonTgt=0, rTarget=0, rOnlineSold=0, rRevenue=0;
+  let rNsOnline=0, rNsOffline=0, rDmOnline=0, rDmOffline=0;
+  let rNsDone=0, rDmDone=0, rCancels=0;
+
+  if (daily && daily.length) {
+    daily.forEach(d => {
+      rLeads      += d.leads      || 0;
+      rNonTgt     += d.nonTarget  || 0;
+      rTarget     += d.target     || 0;
+      rOnlineSold += d.onlineSold || 0;
+      rRevenue    += d.revenue    || 0;
+      rNsOnline   += d.nsOnline   || 0;
+      rNsOffline  += d.offNs      || 0;
+      rDmOnline   += d.dmOnline   || 0;
+      rDmOffline  += d.offDm      || 0;
+      rNsDone     += d.doneNs     || 0;
+      rDmDone     += d.doneDm     || 0;
+      rCancels    += d.cancels    || 0;
+    });
+  }
+
+  // ── Fallback из allData (если РНП не подключён) ──────────
   const ns    = data.filter(r => r.branch==='НСИТИ');
   const dm    = data.filter(r => r.branch==='ДАМУ');
   const nsOl  = ns.filter(r => r.chan==='Онлайн');
@@ -447,61 +483,73 @@ function renderRnpSection(data) {
   const dmOl  = dm.filter(r => r.chan==='Онлайн');
   const dmOf  = dm.filter(r => r.chan==='Оффлайн');
   const olAll = data.filter(r => r.chan==='Онлайн');
-  const olRev = olAll.reduce((s,r)=>s+r.amt,0);
 
-  // Из РНП скрипта (если подключён)
-  const x        = rnpExtra || {};
-  const leads    = x.leads       != null ? x.leads       : '—';
-  const target   = x.target      != null ? x.target      : '—';
-  const nonTgt   = x.nonTarget   != null ? x.nonTarget   : '—';
-  const conv     = x.conversion  != null ? x.conversion  : '—';
-  const nsDone   = x.nsDone      != null ? x.nsDone      : '—';
-  const dmDone   = x.dmDone      != null ? x.dmDone      : '—';
-  const revFact  = x.revenueFact != null ? fmt(x.revenueFact) : '—';
+  // ── Итоговые значения ─────────────────────────────────────
+  const v = (rnp, fallback) => daily ? rnp : (data.length ? fallback : '—');
+  const nsSold    = v(rNsOnline + rNsOffline, ns.length);
+  const nsOnline  = v(rNsOnline,  nsOl.length);
+  const nsOffline = v(rNsOffline, nsOf.length);
+  const nsDone    = daily ? rNsDone : '—';
+  const dmSold    = v(rDmOnline + rDmOffline, dm.length);
+  const dmOnline  = v(rDmOnline,  dmOl.length);
+  const dmOffline = v(rDmOffline, dmOf.length);
+  const dmDone    = daily ? rDmDone : '—';
+  const leads     = daily ? rLeads     : '—';
+  const target    = daily ? rTarget    : '—';
+  const nonTgt    = daily ? rNonTgt    : '—';
+  const onlineSold= daily ? rOnlineSold : (data.length ? olAll.length : '—');
+  const conv      = (daily && rTarget > 0) ? (rOnlineSold/rTarget*100).toFixed(1)+'%' : '—';
+  const revFact   = daily ? fmt(rRevenue) : (rnpExtra?.revenueFact ? fmt(rnpExtra.revenueFact) : '—');
 
-  const hint = v => v === '—' ? `<span style="font-size:10px;color:#374151">подключи РНП скрипт</span>` : '';
+  const tag = v => v === '—'
+    ? `<span style="font-size:10px;color:#374151">← нужен РНП скрипт</span>`
+    : '';
 
-  const card = (label, value, sub, accent, fromApi=false) => `
+  const card = (label, value, sub, accent, needsRnp=false) => `
     <div style="background:#13132a;border-radius:10px;padding:12px 14px;border-left:3px solid ${accent}">
       <div style="font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">${label}</div>
-      <div style="font-size:20px;font-weight:800;color:${accent}">${value}${fromApi&&value==='—'?'':''}</div>
-      <div style="font-size:11px;color:#6b7280;margin-top:2px">${sub}${fromApi?hint(value):''}</div>
+      <div style="font-size:20px;font-weight:800;color:${value==='—'?'#374151':accent}">${value}</div>
+      <div style="font-size:11px;color:#6b7280;margin-top:2px">${sub}${needsRnp?tag(value):''}</div>
     </div>`;
 
-  el.innerHTML = `
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:10px">
+  const periodLabel = currentPeriod==='all'?'весь месяц':currentPeriod==='1-10'?'1–10':currentPeriod==='11-20'?'11–20':'21–конец';
 
+  el.innerHTML = `
+    <div style="font-size:11px;color:#6b7280;margin-bottom:10px">
+      Период: <b style="color:#a855f7">${periodLabel}</b>
+      ${!rnpExtra?'<span style="margin-left:10px;color:#374151">⚡ Подключи РНП скрипт для заявок и проведено</span>':''}
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:10px">
       <div style="background:#0f0f1a;border-radius:12px;padding:14px;border:1px solid #2a2a4a">
         <div style="font-size:12px;font-weight:800;color:#86efac;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px">🏢 НСИТИ</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px">
-          ${card('Продано всего', data.length?ns.length:'—', 'броней', '#86efac')}
-          ${card('↳ Онлайн', data.length?nsOl.length:'—', 'из продано', '#86efac')}
-          ${card('↳ Оффлайн', data.length?nsOf.length:'—', 'из продано', '#86efac')}
-          ${card('Проведено', nsDone, 'мероприятий', '#86efac', true)}
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+          ${card('Продано всего', nsSold,    'броней', '#86efac')}
+          ${card('↳ Онлайн',     nsOnline,  '',       '#86efac')}
+          ${card('↳ Оффлайн',    nsOffline, '',       '#86efac')}
+          ${card('Проведено',    nsDone,    'мероп.', '#86efac', true)}
         </div>
       </div>
-
       <div style="background:#0f0f1a;border-radius:12px;padding:14px;border:1px solid #2a2a4a">
         <div style="font-size:12px;font-weight:800;color:#fdba74;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px">🏢 ДАМУ</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px">
-          ${card('Продано всего', data.length?dm.length:'—', 'броней', '#fdba74')}
-          ${card('↳ Онлайн', data.length?dmOl.length:'—', 'из продано', '#fdba74')}
-          ${card('↳ Оффлайн', data.length?dmOf.length:'—', 'из продано', '#fdba74')}
-          ${card('Проведено', dmDone, 'мероприятий', '#fdba74', true)}
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+          ${card('Продано всего', dmSold,    'броней', '#fdba74')}
+          ${card('↳ Онлайн',     dmOnline,  '',       '#fdba74')}
+          ${card('↳ Оффлайн',    dmOffline, '',       '#fdba74')}
+          ${card('Проведено',    dmDone,    'мероп.', '#fdba74', true)}
         </div>
       </div>
-
     </div>
 
     <div style="background:#0f0f1a;border-radius:12px;padding:14px;border:1px solid #2a2a4a">
-      <div style="font-size:12px;font-weight:800;color:#c084fc;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px">💻 Онлайн</div>
+      <div style="font-size:12px;font-weight:800;color:#c084fc;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px">💻 Онлайн отдел</div>
       <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px">
-        ${card('Заявок всего', leads, 'поступило', '#c084fc', true)}
-        ${card('Целевые (ЦА)', target, 'из заявок', '#22c55e', true)}
-        ${card('Не целевые', nonTgt, 'из заявок', '#ef4444', true)}
-        ${card('Продано броней', data.length?olAll.length:'—', 'из ОТЧЁТЫ', '#a855f7')}
-        ${card('Конверсия', conv, 'ЦА → продажа', '#f59e0b', true)}
-        ${card('Выручка факт', revFact, 'из таблицы РНП', '#ec4899', true)}
+        ${card('Заявок всего',   leads,      'поступило',   '#c084fc', true)}
+        ${card('Целевые (ЦА)',   target,     'из заявок',   '#22c55e', true)}
+        ${card('Не целевые',     nonTgt,     'из заявок',   '#ef4444', true)}
+        ${card('Продано броней', onlineSold, 'онлайн',      '#a855f7', true)}
+        ${card('Конверсия',      conv,       'ЦА→продажа',  '#f59e0b', true)}
+        ${card('Выручка факт',   revFact,    'из РНП',      '#ec4899', true)}
       </div>
     </div>`;
 }
