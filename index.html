@@ -295,7 +295,7 @@ function render() {
   renderChannelsChart(online, offN, offD, sum);
   renderManagerRanking(data, sum);
   renderPackagesChart(data, sum);
-  renderParkProfit(offN, offD, sum);
+  renderParkProfit(online, offN, offD, sum);
   renderManagersChart(data, sum);
   renderTable(data);
 }
@@ -407,40 +407,33 @@ function renderPackagesChart(data, sum) {
     [{data:sorted.map(x=>x[1]),backgroundColor:colors,borderWidth:0}]);
 }
 
-// ── ПРИБЫЛЬ ПАРКОВ ─────────────────────────────────────────────
-function renderParkProfit(offN, offD, sum) {
-  const ns = sum(offN), dm = sum(offD), tot = ns+dm;
-  const pctNs = tot>0?(ns/tot*100).toFixed(1):'0';
-  const pctDm = tot>0?(dm/tot*100).toFixed(1):'0';
+// ── ПРИБЫЛЬ ПАРКОВ (все каналы) ────────────────────────────────
+function renderParkProfit(online, offN, offD, sum) {
+  const ol = sum(online), ns = sum(offN), dm = sum(offD), tot = ol+ns+dm;
+  const pct = v => tot>0?(v/tot*100).toFixed(1):'0';
 
-  // Топ пакеты каждого парка
   const topPkg = (arr,n=3) => {
     const m={}; arr.forEach(r=>{m[r.pkg]=(m[r.pkg]||0)+r.amt;});
     return Object.entries(m).sort((a,b)=>b[1]-a[1]).slice(0,n);
   };
-  const topNs = topPkg(offN); const topDm = topPkg(offD);
 
-  let html = `
+  const block = (label, color, val, arr) => `
     <div style="margin-bottom:12px">
-      <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-        <span style="color:#86efac;font-weight:700">НСИТИ</span>
-        <span style="font-weight:800">${fmt(ns)}</span>
+      <div style="display:flex;justify-content:space-between;margin-bottom:2px">
+        <span style="color:${color};font-weight:700">${label}</span>
+        <span style="font-weight:800">${fmt(val)}</span>
       </div>
-      <div style="font-size:12px;color:#6b7280;margin-bottom:4px">Доля: ${pctNs}%</div>
-      ${topNs.map(([p,a])=>`<div style="font-size:12px;display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid #1e1e38"><span>${p}</span><span style="color:#86efac">${fmt(a)}</span></div>`).join('')}
-    </div>
-    <div>
-      <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-        <span style="color:#fdba74;font-weight:700">ДАМУ</span>
-        <span style="font-weight:800">${fmt(dm)}</span>
-      </div>
-      <div style="font-size:12px;color:#6b7280;margin-bottom:4px">Доля: ${pctDm}%</div>
-      ${topDm.map(([p,a])=>`<div style="font-size:12px;display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid #1e1e38"><span>${p}</span><span style="color:#fdba74">${fmt(a)}</span></div>`).join('')}
+      <div style="font-size:12px;color:#6b7280;margin-bottom:4px">Доля: ${pct(val)}%</div>
+      ${topPkg(arr).map(([p,a])=>`<div style="font-size:12px;display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid #1e1e38"><span style="color:#9ca3af">${p}</span><span style="color:${color}">${fmt(a)}</span></div>`).join('')}
     </div>`;
-  document.getElementById('parkProfit').innerHTML = html;
 
-  buildChart('chartParks','doughnut',['НСИТИ','ДАМУ'],
-    [{data:[ns,dm],backgroundColor:['#86efac','#fdba74'],borderWidth:0}]);
+  document.getElementById('parkProfit').innerHTML =
+    block('💻 Онлайн', '#c084fc', ol, online) +
+    block('🏢 НСИТИ',  '#86efac', ns, offN)   +
+    block('🏢 ДАМУ',   '#fdba74', dm, offD);
+
+  buildChart('chartParks','doughnut',['Онлайн','НСИТИ','ДАМУ'],
+    [{data:[ol,ns,dm],backgroundColor:['#a855f7','#86efac','#fdba74'],borderWidth:0}]);
 }
 
 // ── МЕНЕДЖЕРЫ BAR ──────────────────────────────────────────────
