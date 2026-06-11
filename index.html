@@ -8,57 +8,59 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f0f1a;color:#e8e8f0;min-height:100vh}
-.header{background:linear-gradient(135deg,#6d28d9,#ec4899);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
-.header h1{color:#fff;font-size:20px;font-weight:800}
+.header{background:linear-gradient(135deg,#6d28d9,#ec4899);padding:18px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.header h1{color:#fff;font-size:19px;font-weight:800}
 .header-right{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.container{max-width:1200px;margin:0 auto;padding:24px 16px}
-.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
-.kpi{background:#1a1a2e;border-radius:14px;padding:18px;border:1px solid #2a2a4a;position:relative;overflow:hidden}
+.container{max-width:1200px;margin:0 auto;padding:20px 16px}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.kpi{background:#1a1a2e;border-radius:12px;padding:16px;border:1px solid #2a2a4a;position:relative;overflow:hidden}
 .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent)}
 .kpi.c1{--accent:#a855f7}.kpi.c2{--accent:#ec4899}.kpi.c3{--accent:#f59e0b}.kpi.c4{--accent:#22c55e}
-.kpi-label{font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
-.kpi-value{font-size:22px;font-weight:800;color:#fff}
-.kpi-sub{font-size:12px;color:#6b7280;margin-top:3px}
-.charts-grid{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:16px}
-.charts-grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-.three-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px}
-.card{background:#1a1a2e;border-radius:14px;padding:20px;border:1px solid #2a2a4a}
-.card-title{font-size:13px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;margin-bottom:16px}
+.kpi-label{font-size:11px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
+.kpi-value{font-size:21px;font-weight:800;color:#fff}
+.kpi-sub{font-size:12px;color:#6b7280;margin-top:2px}
+.charts-grid{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:14px}
+.charts-grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.card{background:#1a1a2e;border-radius:12px;padding:18px;border:1px solid #2a2a4a}
+.card-title{font-size:12px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px}
 .tbl{width:100%;border-collapse:collapse;font-size:13px}
-.tbl th{text-align:left;padding:9px 10px;background:#13132a;color:#6b7280;font-size:11px;font-weight:700;text-transform:uppercase;border-bottom:1px solid #2a2a4a}
-.tbl td{padding:9px 10px;border-bottom:1px solid #1e1e38;color:#e8e8f0}
+.tbl th{text-align:left;padding:8px 10px;background:#13132a;color:#6b7280;font-size:11px;font-weight:700;text-transform:uppercase;border-bottom:1px solid #2a2a4a}
+.tbl td{padding:8px 10px;border-bottom:1px solid #1e1e38;color:#e8e8f0}
 .tbl tr:last-child td{border-bottom:none}
 .tbl tr:hover td{background:#1e1e38}
 .badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700}
 .bon{background:#2e1065;color:#c084fc}.boff{background:#500724;color:#f9a8d4}
 .bns{background:#052e16;color:#86efac}.bdm{background:#431407;color:#fdba74}
-.progress-bar-wrap{background:#13132a;border-radius:6px;height:8px;overflow:hidden;margin-top:5px}
-.progress-bar{height:8px;border-radius:6px;transition:width .5s}
-.import-zone{background:#13132a;border:2px dashed #2a2a4a;border-radius:14px;padding:18px;text-align:center;margin-bottom:20px;cursor:pointer;transition:border-color .2s}
+.import-zone{background:#13132a;border:2px dashed #2a2a4a;border-radius:12px;padding:24px;text-align:center;cursor:pointer;transition:border-color .2s;margin-bottom:20px}
 .import-zone:hover{border-color:#6d28d9}
 .import-zone.drag{border-color:#ec4899;background:#1a1238}
-.import-zone p{color:#6b7280;font-size:13px;margin-top:4px}
-.import-zone .icon{font-size:28px;margin-bottom:4px}
-.url-row{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap}
-.url-input{flex:1;padding:10px 14px;background:#13132a;border:1.5px solid #2a2a4a;border-radius:9px;color:#e8e8f0;font-size:13px;outline:none;font-family:inherit;min-width:200px}
+.url-row{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.url-input{flex:1;padding:9px 13px;background:#13132a;border:1.5px solid #2a2a4a;border-radius:9px;color:#e8e8f0;font-size:13px;outline:none;font-family:inherit;min-width:180px}
 .url-input:focus{border-color:#6d28d9}
-.btn{padding:10px 18px;border:none;border-radius:9px;cursor:pointer;font-size:13px;font-weight:700;font-family:inherit;transition:all .15s}
+.btn{padding:9px 16px;border:none;border-radius:9px;cursor:pointer;font-size:13px;font-weight:700;font-family:inherit;transition:all .15s}
 .btn-purple{background:#6d28d9;color:#fff}.btn-purple:hover{background:#5b21b6}
-.btn-sm{padding:7px 13px;font-size:12px}
-.period-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
-.ptab{padding:7px 16px;border:1.5px solid #2a2a4a;background:#13132a;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;color:#6b7280;transition:all .15s;font-family:inherit}
+.btn-pink{background:#be185d;color:#fff}.btn-pink:hover{background:#9d174d}
+.btn-sm{padding:6px 12px;font-size:12px}
+.period-tabs{display:flex;gap:7px;margin-bottom:18px;flex-wrap:wrap}
+.ptab{padding:6px 14px;border:1.5px solid #2a2a4a;background:#13132a;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;color:#6b7280;transition:all .15s;font-family:inherit}
 .ptab.active{background:#6d28d9;color:#fff;border-color:#6d28d9}
-.empty{text-align:center;padding:40px;color:#4b5563}
-.empty .ico{font-size:40px;margin-bottom:10px}
-.empty small{font-size:12px;color:#374151;display:block;margin-top:8px}
-.rank-num{display:inline-flex;width:22px;height:22px;align-items:center;justify-content:center;border-radius:50%;font-size:11px;font-weight:800;background:#2a2a4a;color:#6b7280}
-.rank-num.gold{background:#f59e0b;color:#000}
-.rank-num.silver{background:#9ca3af;color:#000}
-.rank-num.bronze{background:#f97316;color:#000}
-.pct-good{color:#22c55e;font-weight:700}
-.pct-warn{color:#f59e0b;font-weight:700}
-.pct-bad{color:#ef4444;font-weight:700}
-@media(max-width:700px){.kpi-grid{grid-template-columns:1fr 1fr}.charts-grid,.charts-grid2,.three-grid{grid-template-columns:1fr}}
+.empty{text-align:center;padding:36px;color:#4b5563}
+.pbar-wrap{background:#1e1e38;border-radius:4px;height:5px;margin-top:4px;overflow:hidden;width:70px;display:inline-block;vertical-align:middle;margin-left:6px}
+.pbar{height:5px;border-radius:4px}
+.rnp-section{background:#0d0d1f;border-bottom:1px solid #2a2a4a;padding:18px 24px}
+.rnp-inner{max-width:1200px;margin:0 auto}
+.rnp-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.rnp-title{font-size:13px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px}
+.rnp-block{background:#1a1a2e;border-radius:12px;padding:14px 16px;border:1px solid #2a2a4a;margin-bottom:10px}
+.rnp-block-title{font-size:11px;font-weight:700;margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px}
+.rnp-grid{display:grid;gap:0}
+.rnp-cell{padding:0 10px}
+.rnp-cell:first-child{padding-left:0}
+.rnp-cell+.rnp-cell{border-left:1px solid #2a2a4a}
+.rnp-label{font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
+.rnp-val{font-size:20px;font-weight:800;color:#fff}
+.rnp-sub{font-size:10px;color:#4b5563;margin-top:2px}
+@media(max-width:700px){.kpi-grid{grid-template-columns:1fr 1fr}.charts-grid,.charts-grid2{grid-template-columns:1fr}.rnp-grid{grid-template-columns:1fr 1fr !important}}
 </style>
 </head>
 <body>
@@ -66,48 +68,82 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <div class="header">
   <h1>📊 Аналитика выручки — НСИТИ + ДАМУ</h1>
   <div class="header-right">
-    <span id="lastUpdate" style="font-size:12px;color:rgba(255,255,255,.6)"></span>
-    <button class="btn btn-sm" style="background:rgba(255,255,255,.15);color:#fff" onclick="reloadApi()">🔄 Обновить</button>
+    <span id="lastUpdate" style="font-size:12px;color:rgba(255,255,255,.65)"></span>
+    <button class="btn btn-sm" style="background:rgba(255,255,255,.15);color:#fff" onclick="loadFromApi()">🔄 Обновить</button>
+  </div>
+</div>
+
+<div class="rnp-section">
+  <div class="rnp-inner">
+    <div class="rnp-header">
+      <div>
+        <div class="rnp-title">📋 РНП — Операционные показатели</div>
+        <div style="font-size:11px;color:#6b7280;margin-top:4px">
+          Период: <span id="rnpPeriodText">весь месяц</span>
+          &nbsp;|&nbsp;
+          <span id="rnpStatus" style="color:#f59e0b">⚡ Подключи РНП скрипт</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <input class="url-input" id="rnpUrl" placeholder="URL РНП скрипта" style="width:270px;min-width:160px;flex:none">
+        <button class="btn btn-pink btn-sm" onclick="loadRnpFromApi()">⚡ РНП</button>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px">
+      <div class="rnp-block">
+        <div class="rnp-block-title" style="color:#86efac">🏢 НСИТИ</div>
+        <div class="rnp-grid" style="grid-template-columns:repeat(4,1fr)">
+          <div class="rnp-cell"><div class="rnp-label">Продано всего</div><div class="rnp-val" id="r_nsSold">—</div><div class="rnp-sub">броней</div></div>
+          <div class="rnp-cell"><div class="rnp-label">↳ Онлайн</div><div class="rnp-val" id="r_nsOnline">—</div></div>
+          <div class="rnp-cell"><div class="rnp-label">↳ Оффлайн</div><div class="rnp-val" id="r_nsOffline">—</div></div>
+          <div class="rnp-cell"><div class="rnp-label">Проведено</div><div class="rnp-val" id="r_nsDone">—</div><div class="rnp-sub" id="r_nsDoneSub">мероп.</div></div>
+        </div>
+      </div>
+      <div class="rnp-block">
+        <div class="rnp-block-title" style="color:#fdba74">🏢 ДАМУ</div>
+        <div class="rnp-grid" style="grid-template-columns:repeat(4,1fr)">
+          <div class="rnp-cell"><div class="rnp-label">Продано всего</div><div class="rnp-val" id="r_dmSold">—</div><div class="rnp-sub">броней</div></div>
+          <div class="rnp-cell"><div class="rnp-label">↳ Онлайн</div><div class="rnp-val" id="r_dmOnline">—</div></div>
+          <div class="rnp-cell"><div class="rnp-label">↳ Оффлайн</div><div class="rnp-val" id="r_dmOffline">—</div></div>
+          <div class="rnp-cell"><div class="rnp-label">Проведено</div><div class="rnp-val" id="r_dmDone">—</div><div class="rnp-sub" id="r_dmDoneSub">мероп.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rnp-block">
+      <div class="rnp-block-title" style="color:#c084fc">💻 Онлайн отдел</div>
+      <div class="rnp-grid" style="grid-template-columns:repeat(6,1fr)">
+        <div class="rnp-cell"><div class="rnp-label">Заявок всего</div><div class="rnp-val" id="r_leads">—</div><div class="rnp-sub" id="r_leadsSub">поступило</div></div>
+        <div class="rnp-cell"><div class="rnp-label">Целевые (ЦА)</div><div class="rnp-val" id="r_target">—</div><div class="rnp-sub" id="r_targetSub">из заявок</div></div>
+        <div class="rnp-cell"><div class="rnp-label">Не целевые</div><div class="rnp-val" id="r_nonTgt">—</div><div class="rnp-sub" id="r_nonTgtSub">из заявок</div></div>
+        <div class="rnp-cell"><div class="rnp-label">Продано броней</div><div class="rnp-val" id="r_olSold">—</div><div class="rnp-sub">онлайн</div></div>
+        <div class="rnp-cell"><div class="rnp-label">Конверсия</div><div class="rnp-val" id="r_conv">—</div><div class="rnp-sub">ЦА→продажа</div></div>
+        <div class="rnp-cell"><div class="rnp-label">Выручка факт</div><div class="rnp-val" id="r_revFact">—</div><div class="rnp-sub">из РНП</div></div>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="container">
-
-  <!-- РНП — ОПЕРАЦИОННЫЕ ПОКАЗАТЕЛИ (сверху) -->
-  <div class="card" style="margin-bottom:20px">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:16px">
-      <span class="card-title" style="margin:0">📋 РНП — Операционные показатели</span>
-      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-        <input class="url-input" id="rnpUrl" placeholder="URL РНП скрипта (заявки, проведено)" style="margin:0;max-width:340px">
-        <button class="btn btn-sm btn-purple" onclick="loadRnpFromApi()">↻ РНП</button>
-      </div>
-    </div>
-    <div id="rnpContainer">
-      <div style="color:#4b5563;font-size:13px;padding:8px 0">Загрузи основные данные — или подключи РНП скрипт для заявок и проведено</div>
-    </div>
+  <div class="url-row">
+    <input class="url-input" id="apiUrl" placeholder="URL основного скрипта (/exec)">
+    <button class="btn btn-purple" onclick="loadFromApi()">🔄 Загрузить</button>
+  </div>
+  <div class="import-zone" id="dropZone">
+    <div style="font-size:32px;margin-bottom:6px">📂</div>
+    <strong style="color:#e8e8f0">Перетащи CSV или JSON</strong>
+    <p style="color:#6b7280;font-size:13px;margin-top:6px">или нажми и выбери файл</p>
+    <input type="file" id="fileInput" accept=".csv,.json" style="display:none">
   </div>
 
-  <div style="margin-bottom:20px">
-    <div class="url-row">
-      <input class="url-input" id="apiUrl" placeholder="URL скрипта /exec — Google Apps Script doGet">
-      <button class="btn btn-purple" onclick="loadFromApi()">🔄 Загрузить</button>
-    </div>
-    <div class="import-zone" id="dropZone">
-      <div class="icon">📂</div>
-      <strong style="color:#e8e8f0">Перетащи CSV или JSON</strong>
-      <p>или нажми и выбери файл</p>
-      <input type="file" id="fileInput" accept=".csv,.json" style="display:none">
-    </div>
-  </div>
-
-  <div class="period-tabs">
-    <button class="ptab active" onclick="setPeriod('all',this)">Всё время</button>
+  <div class="period-tabs" id="periodTabs">
+    <button class="ptab active" onclick="setPeriod('all',this)">Весь месяц</button>
     <button class="ptab" onclick="setPeriod('1-10',this)">1–10</button>
     <button class="ptab" onclick="setPeriod('11-20',this)">11–20</button>
     <button class="ptab" onclick="setPeriod('21-',this)">21–конец</button>
   </div>
 
-  <!-- KPI -->
   <div class="kpi-grid">
     <div class="kpi c1"><div class="kpi-label">💻 Онлайн</div><div class="kpi-value" id="kpiOnline">—</div><div class="kpi-sub" id="kpiOnlineN">—</div></div>
     <div class="kpi c2"><div class="kpi-label">🏢 Офф НСИТИ</div><div class="kpi-value" id="kpiNsiti">—</div><div class="kpi-sub" id="kpiNsitiN">—</div></div>
@@ -115,85 +151,38 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="kpi c4"><div class="kpi-label">💰 Итого</div><div class="kpi-value" id="kpiTotal">—</div><div class="kpi-sub" id="kpiTotalN">—</div></div>
   </div>
 
-  <!-- ПЛАН / ФАКТ / % / ПРОГНОЗ -->
-  <div class="card" style="margin-bottom:16px">
-    <div class="card-title">🎯 План / Факт / Выполнение / Прогноз</div>
-    <div style="overflow-x:auto">
-      <table class="tbl" id="planTable">
-        <thead><tr>
-          <th>Направление</th>
-          <th style="text-align:right">План (мес)</th>
-          <th style="text-align:right">Факт</th>
-          <th style="text-align:right">Выполнение</th>
-          <th>Прогресс</th>
-          <th style="text-align:right">Прогноз на месяц</th>
-          <th style="text-align:right">Остаток</th>
-        </tr></thead>
-        <tbody id="planBody">
-          <tr><td colspan="7" style="text-align:center;color:#4b5563;padding:20px">Данные не загружены</td></tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-title">📈 План · Факт · % выполнения · Прогноз</div>
+    <div style="overflow-x:auto"><table class="tbl" id="planTable"></table></div>
+    <div style="font-size:11px;color:#4b5563;margin-top:8px">Прогноз = факт ÷ прошедшие дни × всего дней в месяце</div>
   </div>
 
-  <!-- CHARTS ROW 1 -->
   <div class="charts-grid">
     <div class="card"><div class="card-title">Выручка по дням</div><canvas id="chartDays" height="200"></canvas></div>
     <div class="card"><div class="card-title">По каналам</div><canvas id="chartChannels" height="200"></canvas></div>
   </div>
 
-  <!-- РЕЙТИНГ МЕНЕДЖЕРОВ + ПАКЕТЫ + ПРИБЫЛЬ ПАРКОВ -->
-  <div class="three-grid">
-    <div class="card">
-      <div class="card-title">🏆 Рейтинг менеджеров</div>
-      <div id="mgrRanking">—</div>
-    </div>
-    <div class="card">
-      <div class="card-title">📦 Топ пакетов по выручке</div>
-      <canvas id="chartPackages" height="260"></canvas>
-    </div>
-    <div class="card">
-      <div class="card-title">🏛️ Прибыль парков</div>
-      <div id="parkProfit">—</div>
-      <div style="margin-top:16px"><canvas id="chartParks" height="160"></canvas></div>
-    </div>
+  <div class="charts-grid2">
+    <div class="card"><div class="card-title">Рейтинг менеджеров</div><canvas id="chartManagers" height="230"></canvas></div>
+    <div class="card"><div class="card-title">Топ пакетов (все каналы)</div><canvas id="chartPackages" height="230"></canvas></div>
   </div>
 
-  <!-- CHARTS ROW 2 -->
-  <div class="charts-grid2" style="margin-bottom:16px">
-    <div class="card"><div class="card-title">По менеджерам (график)</div><canvas id="chartManagers" height="220"></canvas></div>
-    <div class="card"><div class="card-title">Пакеты — распределение</div><canvas id="chartPkgDoughnut" height="220"></canvas></div>
+  <div class="charts-grid2">
+    <div class="card"><div class="card-title">🏢 НСИТИ — прибыль по пакетам</div><canvas id="chartNsitiPkgs" height="220"></canvas></div>
+    <div class="card"><div class="card-title">🏢 ДАМУ — прибыль по пакетам</div><canvas id="chartDamuPkgs" height="220"></canvas></div>
   </div>
 
-  <!-- ТАБЛИЦА ЗАПИСЕЙ -->
   <div class="card">
     <div class="card-title">Все записи</div>
-    <div style="overflow-x:auto">
-      <div id="tableContainer">
-        <div class="empty">
-          <div class="ico">📭</div>
-          <p>Данные ещё не загружены</p>
-          <small>Введи URL скрипта выше и нажми «Загрузить»</small>
-        </div>
-      </div>
-    </div>
+    <div style="overflow-x:auto"><div id="tableContainer"><div class="empty"><div style="font-size:36px;margin-bottom:8px">📭</div><p>Загрузи данные выше</p></div></div></div>
   </div>
-
 </div>
 
 <script>
-let allData = [], currentPeriod = 'all', charts = {};
-
 const AUTO_API_URL = 'https://script.google.com/macros/s/AKfycbwvV0aAuGsXodi0hxtcn18TNhQ4JRf7D7fWM2EV7dUiVK7rkB6FR-3ZBepXliDDqw_T/exec';
+const PLANS = { 'Онлайн': 17500000, 'Офф НСИТИ': 3500000, 'Офф ДАМУ': 3000000 };
+let allData = [], currentPeriod = 'all', charts = {}, rnpExtra = null;
 
-// Планы на месяц (тг)
-const PLANS = {
-  'Онлайн':       17_500_000,
-  'Офф НСИТИ':     3_500_000,
-  'Офф ДАМУ':      3_000_000,
-};
-
-// ── ФАЙЛОВЫЙ ИМПОРТ ────────────────────────────────────────────
 document.getElementById('dropZone').addEventListener('click', () => document.getElementById('fileInput').click());
 document.getElementById('dropZone').addEventListener('dragover', e => { e.preventDefault(); e.currentTarget.classList.add('drag'); });
 document.getElementById('dropZone').addEventListener('dragleave', e => e.currentTarget.classList.remove('drag'));
@@ -205,82 +194,84 @@ function handleFile(file) {
   const fr = new FileReader();
   fr.onload = ev => {
     try {
-      if (file.name.endsWith('.json')) { const d = JSON.parse(ev.target.result); loadData(d.data || d); }
-      else { loadData(parseCSV(ev.target.result)); }
+      if (file.name.endsWith('.json')) {
+        const d = JSON.parse(ev.target.result);
+        if (d.rnp) { rnpExtra = d.rnp; }
+        loadData(d.data || d);
+      } else {
+        loadData(parseCSV(ev.target.result));
+      }
     } catch(err) { alert('Ошибка при чтении: ' + err.message); }
   };
   fr.readAsText(file);
 }
 
 function parseCSV(text) {
-  const lines = text.trim().split(/\r?\n/);
-  if (lines.length < 2) return [];
-  const headers = splitLine(lines[0]);
-  return lines.slice(1).filter(l => l.trim()).map(l => {
-    const v = splitLine(l), o = {};
-    headers.forEach((h, i) => o[h] = v[i] !== undefined ? v[i] : '');
-    return o;
+  const lines = text.trim().split('\n');
+  const headers = lines[0].split(',').map(s => s.trim().replace(/^"|"$/g,''));
+  return lines.slice(1).map(line => {
+    const vals = line.split(',').map(s => s.trim().replace(/^"|"$/g,''));
+    const obj = {};
+    headers.forEach((h,i) => obj[h] = vals[i] || '');
+    return obj;
   });
 }
-function splitLine(line) {
-  const r = []; let cur = '', inQ = false;
-  for (let i = 0; i < line.length; i++) {
-    const c = line[i];
-    if (c === '"') { inQ = !inQ; }
-    else if (c === ',' && !inQ) { r.push(cur.trim()); cur = ''; }
-    else cur += c;
-  }
-  r.push(cur.trim()); return r;
-}
 
-// ── API ────────────────────────────────────────────────────────
+function setStatus(msg) { document.getElementById('lastUpdate').textContent = msg; }
+
 async function loadFromApi() {
-  const url = document.getElementById('apiUrl').value.trim();
-  if (!url) { alert('Введи URL скрипта'); return; }
+  const url = document.getElementById('apiUrl').value.trim() || AUTO_API_URL;
+  document.getElementById('apiUrl').value = url;
   setStatus('Загрузка…');
   try {
     const r = await fetch(url, { redirect: 'follow' });
     if (!r.ok) throw new Error('HTTP ' + r.status);
     const text = await r.text();
-    if (!text || !text.trim()) throw new Error(
-      'Сервер вернул пустой ответ.\n\nЧто сделать:\n' +
-      '1. Переразверни скрипт (Развернуть → Новое развёртывание)\n' +
-      '2. Запусти backfillFromDay1() вручную\n' +
-      '3. Обнови URL и нажми «Загрузить» снова'
-    );
+    if (!text || !text.trim()) throw new Error('Сервер вернул пустой ответ');
     const d = JSON.parse(text);
-    if (d.rnp) { rnpExtra = d.rnp; } // если основной GAS вернул RNP-данные
+    if (d.rnp) { rnpExtra = d.rnp; }
     loadData(d.data || d);
-  } catch(e) { setStatus(''); alert('Ошибка: ' + e.message); }
-}
-function reloadApi() {
-  const url = document.getElementById('apiUrl').value.trim();
-  if (url) loadFromApi(); else alert('Введи URL скрипта');
+  } catch(e) { setStatus(''); alert('Ошибка загрузки: ' + e.message); }
 }
 
-// ── ДАННЫЕ ─────────────────────────────────────────────────────
+async function loadRnpFromApi() {
+  const url = document.getElementById('rnpUrl').value.trim();
+  if (!url) { alert('Введи URL РНП скрипта'); return; }
+  const el = document.getElementById('rnpStatus');
+  el.style.color = '#f59e0b'; el.textContent = '⏳ Загрузка…';
+  try {
+    const r = await fetch(url, { redirect: 'follow' });
+    const text = await r.text();
+    if (!text.trim()) throw new Error('Пустой ответ');
+    rnpExtra = JSON.parse(text);
+    el.style.color = '#22c55e'; el.textContent = '✅ РНП загружен';
+    renderRnpSection(filterByPeriod(allData));
+  } catch(e) { el.style.color = '#f87171'; el.textContent = '❌ ' + e.message; }
+}
+
 function loadData(data) {
-  if (!Array.isArray(data) || !data.length) { setStatus(''); alert('Данные пустые.'); return; }
   allData = data.map(row => ({
-    date:   String(row['Дата']     || row['date']   || ''),
-    mgr:    String(row['Менеджер'] || row['mgr']    || ''),
-    branch: String(row['Филиал']   || row['branch'] || ''),
-    chan:    String(row['Канал']    || row['chan']   || ''),
-    pkg:    String(row['Пакет']    || row['pkg']    || ''),
-    amt:    parseFloat(String(row['Сумма'] || row['amt'] || 0).replace(/[\s ]/g,'')) || 0,
-    src:    String(row['Тип']      || row['source'] || ''),
+    date:   row['Дата']     || row['date']   || '',
+    mgr:    row['Менеджер'] || row['mgr']    || '',
+    branch: row['Филиал']   || row['branch'] || '',
+    chan:    row['Канал']    || row['chan']   || '',
+    pkg:    row['Пакет']    || row['pkg']    || '',
+    amt:    parseFloat(String(row['Сумма'] || row['amt'] || 0).replace(/[\s,]/g,'')) || 0,
   })).filter(r => r.amt > 0);
   const now = new Date();
   setStatus('Обновлено ' + now.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}) + ' · ' + allData.length + ' записей');
   render();
 }
-function setStatus(t) { document.getElementById('lastUpdate').textContent = t; }
 
 function setPeriod(p, btn) {
   currentPeriod = p;
   document.querySelectorAll('.ptab').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active'); render();
+  btn.classList.add('active');
+  const labels = {'all':'весь месяц','1-10':'1–10','11-20':'11–20','21-':'21–конец'};
+  document.getElementById('rnpPeriodText').textContent = labels[p] || p;
+  render();
 }
+
 function filterByPeriod(data) {
   if (currentPeriod === 'all') return data;
   return data.filter(r => {
@@ -290,152 +281,6 @@ function filterByPeriod(data) {
     if (currentPeriod === '21-')   return d >= 21;
     return true;
   });
-}
-
-// ── РЕНДЕР ─────────────────────────────────────────────────────
-function render() {
-  const data   = filterByPeriod(allData);
-  const online = data.filter(r => r.chan === 'Онлайн');
-  const offN   = data.filter(r => r.chan === 'Оффлайн' && r.branch === 'НСИТИ');
-  const offD   = data.filter(r => r.chan === 'Оффлайн' && r.branch === 'ДАМУ');
-  const sum    = arr => arr.reduce((s,r) => s+r.amt, 0);
-
-  set('kpiOnline', fmt(sum(online))); set('kpiOnlineN', online.length+' записей');
-  set('kpiNsiti',  fmt(sum(offN)));   set('kpiNsitiN',  offN.length+' записей');
-  set('kpiDamu',   fmt(sum(offD)));   set('kpiDamuN',   offD.length+' записей');
-  set('kpiTotal',  fmt(sum(data)));   set('kpiTotalN',  data.length+' записей');
-
-  renderPlanTable(online, offN, offD, sum);
-  renderDaysChart(data);
-  renderChannelsChart(online, offN, offD, sum);
-  renderRnpSection(data);
-  renderManagerRanking(data, sum);
-  renderPackagesChart(data, sum);
-  renderParkProfit(online, offN, offD, sum);
-  renderManagersChart(data, sum);
-  renderTable(data);
-}
-
-// ── ПЛАН / ФАКТ / % / ПРОГНОЗ ──────────────────────────────────
-function renderPlanTable(online, offN, offD, sum) {
-  const today = new Date();
-  const daysInMonth = new Date(today.getFullYear(), today.getMonth()+1, 0).getDate();
-  const dayOfMonth  = today.getDate();
-  const elapsed     = dayOfMonth / daysInMonth; // доля прошедшего месяца
-
-  const rows = [
-    { label:'💻 Онлайн',    key:'Онлайн',    fact: sum(online), color:'#a855f7' },
-    { label:'🏢 Офф НСИТИ', key:'Офф НСИТИ', fact: sum(offN),   color:'#ec4899' },
-    { label:'🏢 Офф ДАМУ',  key:'Офф ДАМУ',  fact: sum(offD),   color:'#f59e0b' },
-  ];
-  const totalPlan = Object.values(PLANS).reduce((a,b)=>a+b,0);
-  const totalFact = rows.reduce((a,r)=>a+r.fact,0);
-
-  let html = '';
-  [...rows, {label:'💰 Итого', key:'_total', fact:totalFact, color:'#22c55e', plan:totalPlan}].forEach(r => {
-    const plan = r.plan !== undefined ? r.plan : PLANS[r.key] || 0;
-    const pct  = plan > 0 ? (r.fact / plan * 100) : 0;
-    const forecast = elapsed > 0 ? r.fact / elapsed : 0;
-    const remain = Math.max(0, plan - r.fact);
-    const pctCls = pct >= 100 ? 'pct-good' : pct >= 60 ? 'pct-warn' : 'pct-bad';
-    const barW = Math.min(100, pct).toFixed(1);
-    const barColor = pct >= 100 ? '#22c55e' : pct >= 60 ? '#f59e0b' : '#ef4444';
-    html += `<tr>
-      <td><span style="color:${r.color};font-weight:700">${r.label}</span></td>
-      <td style="text-align:right;color:#6b7280">${fmt(plan)}</td>
-      <td style="text-align:right;font-weight:700">${fmt(r.fact)}</td>
-      <td style="text-align:right"><span class="${pctCls}">${pct.toFixed(1)}%</span></td>
-      <td style="min-width:100px">
-        <div class="progress-bar-wrap"><div class="progress-bar" style="width:${barW}%;background:${barColor}"></div></div>
-        <div style="font-size:10px;color:#6b7280;margin-top:2px">${barW}% из 100%</div>
-      </td>
-      <td style="text-align:right;color:#a855f7;font-weight:700">${fmt(forecast)}</td>
-      <td style="text-align:right;color:#ef4444">${remain>0?'–'+fmt(remain):'<span style="color:#22c55e">✅ Выполнен</span>'}</td>
-    </tr>`;
-  });
-  document.getElementById('planBody').innerHTML = html;
-}
-
-// ── ГРАФИК ПО ДНЯМ ─────────────────────────────────────────────
-function renderDaysChart(data) {
-  const byDay = {};
-  data.forEach(r => {
-    const d = (r.date || '').slice(0,5);
-    if (!d || !/^\d{2}\.\d{2}/.test(d)) return;
-    if (!byDay[d]) byDay[d] = {online:0,offN:0,offD:0};
-    if (r.chan==='Онлайн') byDay[d].online+=r.amt;
-    else if (r.branch==='НСИТИ') byDay[d].offN+=r.amt;
-    else if (r.branch==='ДАМУ')  byDay[d].offD+=r.amt;
-  });
-  const labels = Object.keys(byDay).sort();
-  buildChart('chartDays','bar',labels,[
-    {label:'Онлайн',    data:labels.map(d=>byDay[d].online),backgroundColor:'rgba(168,85,247,.8)',borderColor:'#a855f7',borderWidth:2},
-    {label:'Офф НСИТИ', data:labels.map(d=>byDay[d].offN),  backgroundColor:'rgba(236,72,153,.8)',borderColor:'#ec4899',borderWidth:2},
-    {label:'Офф ДАМУ',  data:labels.map(d=>byDay[d].offD),  backgroundColor:'rgba(245,158,11,.8)',borderColor:'#f59e0b',borderWidth:2},
-  ],{stacked:true});
-}
-
-// ── КАНАЛЫ DOUGHNUT ─────────────────────────────────────────────
-function renderChannelsChart(online, offN, offD, sum) {
-  buildChart('chartChannels','doughnut',['Онлайн','Офф НСИТИ','Офф ДАМУ'],
-    [{data:[sum(online),sum(offN),sum(offD)],backgroundColor:['#a855f7','#ec4899','#f59e0b'],borderWidth:0}]);
-}
-
-// ── РЕЙТИНГ МЕНЕДЖЕРОВ ─────────────────────────────────────────
-function renderManagerRanking(data, sum) {
-  const map = {};
-  data.forEach(r => {
-    if (!map[r.mgr]) map[r.mgr] = {amt:0,cnt:0,chan:r.chan,branch:r.branch};
-    map[r.mgr].amt += r.amt;
-    map[r.mgr].cnt++;
-  });
-  const sorted = Object.entries(map).sort((a,b)=>b[1].amt-a[1].amt);
-  const total  = sorted.reduce((s,[,v])=>s+v.amt,0);
-  const medals = ['gold','silver','bronze'];
-  let html = '<table class="tbl">';
-  sorted.forEach(([name,v],i) => {
-    const pct = total>0?(v.amt/total*100).toFixed(1):'0';
-    const rankCls = medals[i]||'';
-    const chan = v.chan==='Онлайн'?'<span class="badge bon">Онлайн</span>':`<span class="badge boff">Офф</span>`;
-    html += `<tr>
-      <td><span class="rank-num ${rankCls}">${i+1}</span></td>
-      <td><b>${name}</b></td>
-      <td>${chan}</td>
-      <td style="text-align:right;font-weight:700;color:#a855f7">${fmt(v.amt)}</td>
-      <td style="text-align:right;color:#6b7280;font-size:12px">${pct}%</td>
-    </tr>`;
-  });
-  html += '</table>';
-  document.getElementById('mgrRanking').innerHTML = html || '<div class="empty"><div class="ico">📭</div><p>Нет данных</p></div>';
-}
-
-// ── ТОП ПАКЕТОВ BAR ────────────────────────────────────────────
-function renderPackagesChart(data, sum) {
-  const map = {};
-  data.forEach(r => { const p=(r.pkg||'Прочее')||'Прочее'; map[p]=(map[p]||0)+r.amt; });
-  const sorted = Object.entries(map).sort((a,b)=>b[1]-a[1]).slice(0,10);
-  const colors = ['#a855f7','#ec4899','#f59e0b','#22c55e','#3b82f6','#f97316','#14b8a6','#8b5cf6','#06b6d4','#d946ef'];
-  buildChart('chartPackages','bar',sorted.map(x=>x[0]),
-    [{label:'Выручка',data:sorted.map(x=>x[1]),backgroundColor:colors,borderWidth:0}]);
-
-  // doughnut тоже
-  buildChart('chartPkgDoughnut','doughnut',sorted.map(x=>x[0]),
-    [{data:sorted.map(x=>x[1]),backgroundColor:colors,borderWidth:0}]);
-}
-
-// ── РНП — ОПЕРАЦИОННЫЕ ПОКАЗАТЕЛИ ─────────────────────────────
-let rnpExtra = null;
-
-async function loadRnpFromApi() {
-  const url = document.getElementById('rnpUrl').value.trim();
-  if (!url) { alert('Введи URL РНП скрипта'); return; }
-  try {
-    const r = await fetch(url, {redirect:'follow'});
-    const text = await r.text();
-    if (!text.trim()) throw new Error('Пустой ответ');
-    rnpExtra = JSON.parse(text);
-    renderRnpSection(filterByPeriod(allData));
-  } catch(e) { alert('Ошибка РНП: ' + e.message); }
 }
 
 function filterRnpByPeriod(daily) {
@@ -449,199 +294,195 @@ function filterRnpByPeriod(daily) {
   });
 }
 
+function render() {
+  const data = filterByPeriod(allData);
+  renderRnpSection(data);
+  renderKpi(data);
+  renderPlanTable();
+  renderDaysChart(data);
+  renderChannelsChart(data);
+  renderManagersChart(data);
+  renderPackagesChart(data);
+  renderParkPackages(data);
+  renderTable(data);
+}
+
 function renderRnpSection(data) {
-  const el = document.getElementById('rnpContainer');
-
-  // ── Данные из РНП по периоду ──────────────────────────────
   const daily = rnpExtra ? filterRnpByPeriod(rnpExtra.daily || []) : null;
-
-  let rLeads=0, rNonTgt=0, rTarget=0, rOnlineSold=0, rRevenue=0;
-  let rNsOnline=0, rNsOffline=0, rDmOnline=0, rDmOffline=0;
-  let rNsDone=0, rDmDone=0, rCancels=0;
+  let rLeads=0,rNonTgt=0,rTarget=0,rOlSold=0,rRevenue=0;
+  let rNsOnline=0,rNsOffline=0,rDmOnline=0,rDmOffline=0,rNsDone=0,rDmDone=0;
 
   if (daily && daily.length) {
     daily.forEach(d => {
-      rLeads      += d.leads      || 0;
-      rNonTgt     += d.nonTarget  || 0;
-      rTarget     += d.target     || 0;
-      rOnlineSold += d.onlineSold || 0;
-      rRevenue    += d.revenue    || 0;
-      rNsOnline   += d.nsOnline   || 0;
-      rNsOffline  += d.offNs      || 0;
-      rDmOnline   += d.dmOnline   || 0;
-      rDmOffline  += d.offDm      || 0;
-      rNsDone     += d.doneNs     || 0;
-      rDmDone     += d.doneDm     || 0;
-      rCancels    += d.cancels    || 0;
+      rLeads     += d.leads      || 0;
+      rNonTgt    += d.nonTarget  || 0;
+      rTarget    += d.target     || 0;
+      rOlSold    += d.onlineSold || 0;
+      rRevenue   += d.revenue    || 0;
+      rNsOnline  += d.nsOnline   || 0;
+      rNsOffline += d.offNs      || 0;
+      rDmOnline  += d.dmOnline   || 0;
+      rDmOffline += d.offDm      || 0;
+      rNsDone    += d.doneNs     || 0;
+      rDmDone    += d.doneDm     || 0;
     });
   }
 
-  // ── Fallback из allData (если РНП не подключён) ──────────
-  const ns    = data.filter(r => r.branch==='НСИТИ');
-  const dm    = data.filter(r => r.branch==='ДАМУ');
-  const nsOl  = ns.filter(r => r.chan==='Онлайн');
-  const nsOf  = ns.filter(r => r.chan==='Оффлайн');
-  const dmOl  = dm.filter(r => r.chan==='Онлайн');
-  const dmOf  = dm.filter(r => r.chan==='Оффлайн');
-  const olAll = data.filter(r => r.chan==='Онлайн');
+  const ns   = data.filter(r => r.branch === 'НСИТИ');
+  const dm   = data.filter(r => r.branch === 'ДАМУ');
+  const olAll = data.filter(r => r.chan === 'Онлайн');
+  const hasDailyData = daily && daily.length > 0;
 
-  // ── Итоговые значения ─────────────────────────────────────
-  const v = (rnp, fallback) => daily ? rnp : (data.length ? fallback : '—');
-  const nsSold    = v(rNsOnline + rNsOffline, ns.length);
-  const nsOnline  = v(rNsOnline,  nsOl.length);
-  const nsOffline = v(rNsOffline, nsOf.length);
-  const nsDone    = daily ? rNsDone : '—';
-  const dmSold    = v(rDmOnline + rDmOffline, dm.length);
-  const dmOnline  = v(rDmOnline,  dmOl.length);
-  const dmOffline = v(rDmOffline, dmOf.length);
-  const dmDone    = daily ? rDmDone : '—';
-  const leads     = daily ? rLeads     : '—';
-  const target    = daily ? rTarget    : '—';
-  const nonTgt    = daily ? rNonTgt    : '—';
-  const onlineSold= daily ? rOnlineSold : (data.length ? olAll.length : '—');
-  const conv      = (daily && rTarget > 0) ? (rOnlineSold/rTarget*100).toFixed(1)+'%' : '—';
-  const revFact   = daily ? fmt(rRevenue) : (rnpExtra?.revenueFact ? fmt(rnpExtra.revenueFact) : '—');
+  set('r_nsSold',    hasDailyData ? (rNsOnline+rNsOffline) : ns.length);
+  set('r_nsOnline',  hasDailyData ? rNsOnline  : ns.filter(r=>r.chan==='Онлайн').length);
+  set('r_nsOffline', hasDailyData ? rNsOffline : ns.filter(r=>r.chan==='Оффлайн').length);
+  set('r_nsDone',    hasDailyData ? rNsDone : '—');
+  set('r_nsDoneSub', hasDailyData ? 'мероп.' : 'нужен РНП скрипт');
 
-  const tag = v => v === '—'
-    ? `<span style="font-size:10px;color:#374151">← нужен РНП скрипт</span>`
-    : '';
+  set('r_dmSold',    hasDailyData ? (rDmOnline+rDmOffline) : dm.length);
+  set('r_dmOnline',  hasDailyData ? rDmOnline  : dm.filter(r=>r.chan==='Онлайн').length);
+  set('r_dmOffline', hasDailyData ? rDmOffline : dm.filter(r=>r.chan==='Оффлайн').length);
+  set('r_dmDone',    hasDailyData ? rDmDone : '—');
+  set('r_dmDoneSub', hasDailyData ? 'мероп.' : 'нужен РНП скрипт');
 
-  const card = (label, value, sub, accent, needsRnp=false) => `
-    <div style="background:#13132a;border-radius:10px;padding:12px 14px;border-left:3px solid ${accent}">
-      <div style="font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px">${label}</div>
-      <div style="font-size:20px;font-weight:800;color:${value==='—'?'#374151':accent}">${value}</div>
-      <div style="font-size:11px;color:#6b7280;margin-top:2px">${sub}${needsRnp?tag(value):''}</div>
-    </div>`;
+  set('r_leads',   hasDailyData ? rLeads  : '—');
+  set('r_target',  hasDailyData ? rTarget : '—');
+  set('r_nonTgt',  hasDailyData ? rNonTgt : '—');
+  set('r_olSold',  hasDailyData ? rOlSold : olAll.length);
+  set('r_conv',    (hasDailyData && rTarget > 0) ? (rOlSold/rTarget*100).toFixed(1)+'%' : '—');
 
-  const periodLabel = currentPeriod==='all'?'весь месяц':currentPeriod==='1-10'?'1–10':currentPeriod==='11-20'?'11–20':'21–конец';
+  const revFact = hasDailyData ? rRevenue : (rnpExtra ? (rnpExtra.revenueFact || 0) : null);
+  set('r_revFact', revFact !== null ? fmt(revFact) : '—');
 
-  el.innerHTML = `
-    <div style="font-size:11px;color:#6b7280;margin-bottom:10px">
-      Период: <b style="color:#a855f7">${periodLabel}</b>
-      ${!rnpExtra?'<span style="margin-left:10px;color:#374151">⚡ Подключи РНП скрипт для заявок и проведено</span>':''}
-    </div>
+  set('r_leadsSub',  hasDailyData ? 'поступило' : 'нужен РНП скрипт');
+  set('r_targetSub', hasDailyData ? 'из заявок'  : 'нужен РНП скрипт');
+  set('r_nonTgtSub', hasDailyData ? 'из заявок'  : 'нужен РНП скрипт');
 
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:10px">
-      <div style="background:#0f0f1a;border-radius:12px;padding:14px;border:1px solid #2a2a4a">
-        <div style="font-size:12px;font-weight:800;color:#86efac;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px">🏢 НСИТИ</div>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
-          ${card('Продано всего', nsSold,    'броней', '#86efac')}
-          ${card('↳ Онлайн',     nsOnline,  '',       '#86efac')}
-          ${card('↳ Оффлайн',    nsOffline, '',       '#86efac')}
-          ${card('Проведено',    nsDone,    'мероп.', '#86efac', true)}
-        </div>
-      </div>
-      <div style="background:#0f0f1a;border-radius:12px;padding:14px;border:1px solid #2a2a4a">
-        <div style="font-size:12px;font-weight:800;color:#fdba74;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px">🏢 ДАМУ</div>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
-          ${card('Продано всего', dmSold,    'броней', '#fdba74')}
-          ${card('↳ Онлайн',     dmOnline,  '',       '#fdba74')}
-          ${card('↳ Оффлайн',    dmOffline, '',       '#fdba74')}
-          ${card('Проведено',    dmDone,    'мероп.', '#fdba74', true)}
-        </div>
-      </div>
-    </div>
-
-    <div style="background:#0f0f1a;border-radius:12px;padding:14px;border:1px solid #2a2a4a">
-      <div style="font-size:12px;font-weight:800;color:#c084fc;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px">💻 Онлайн отдел</div>
-      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px">
-        ${card('Заявок всего',   leads,      'поступило',   '#c084fc', true)}
-        ${card('Целевые (ЦА)',   target,     'из заявок',   '#22c55e', true)}
-        ${card('Не целевые',     nonTgt,     'из заявок',   '#ef4444', true)}
-        ${card('Продано броней', onlineSold, 'онлайн',      '#a855f7', true)}
-        ${card('Конверсия',      conv,       'ЦА→продажа',  '#f59e0b', true)}
-        ${card('Выручка факт',   revFact,    'из РНП',      '#ec4899', true)}
-      </div>
-    </div>`;
+  if (rnpExtra !== null) {
+    const el = document.getElementById('rnpStatus');
+    el.style.color = '#22c55e';
+    el.textContent = '✅ РНП загружен';
+  }
 }
 
-// ── ПРИБЫЛЬ ПАРКОВ (все каналы) ────────────────────────────────
-function renderParkProfit(online, offN, offD, sum) {
-  const ol = sum(online), ns = sum(offN), dm = sum(offD), tot = ol+ns+dm;
-  const pct = v => tot>0?(v/tot*100).toFixed(1):'0';
-
-  const topPkg = (arr,n=3) => {
-    const m={}; arr.forEach(r=>{m[r.pkg]=(m[r.pkg]||0)+r.amt;});
-    return Object.entries(m).sort((a,b)=>b[1]-a[1]).slice(0,n);
-  };
-
-  const block = (label, color, val, arr) => `
-    <div style="margin-bottom:12px">
-      <div style="display:flex;justify-content:space-between;margin-bottom:2px">
-        <span style="color:${color};font-weight:700">${label}</span>
-        <span style="font-weight:800">${fmt(val)}</span>
-      </div>
-      <div style="font-size:12px;color:#6b7280;margin-bottom:4px">Доля: ${pct(val)}%</div>
-      ${topPkg(arr).map(([p,a])=>`<div style="font-size:12px;display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid #1e1e38"><span style="color:#9ca3af">${p}</span><span style="color:${color}">${fmt(a)}</span></div>`).join('')}
-    </div>`;
-
-  document.getElementById('parkProfit').innerHTML =
-    block('💻 Онлайн', '#c084fc', ol, online) +
-    block('🏢 НСИТИ',  '#86efac', ns, offN)   +
-    block('🏢 ДАМУ',   '#fdba74', dm, offD);
-
-  buildChart('chartParks','doughnut',['Онлайн','НСИТИ','ДАМУ'],
-    [{data:[ol,ns,dm],backgroundColor:['#a855f7','#86efac','#fdba74'],borderWidth:0}]);
+function renderKpi(data) {
+  const online = data.filter(r => r.chan==='Онлайн');
+  const offN   = data.filter(r => r.chan==='Оффлайн' && r.branch==='НСИТИ');
+  const offD   = data.filter(r => r.chan==='Оффлайн' && r.branch==='ДАМУ');
+  const sum    = arr => arr.reduce((s,r)=>s+r.amt,0);
+  set('kpiOnline', fmt(sum(online))); set('kpiOnlineN', online.length+' записей');
+  set('kpiNsiti',  fmt(sum(offN)));   set('kpiNsitiN',  offN.length+' записей');
+  set('kpiDamu',   fmt(sum(offD)));   set('kpiDamuN',   offD.length+' записей');
+  set('kpiTotal',  fmt(sum(data)));   set('kpiTotalN',  data.length+' записей');
 }
 
-// ── МЕНЕДЖЕРЫ BAR ──────────────────────────────────────────────
-function renderManagersChart(data, sum) {
-  const map = {};
-  data.forEach(r => { map[r.mgr]=(map[r.mgr]||0)+r.amt; });
-  const sorted = Object.entries(map).sort((a,b)=>b[1]-a[1]);
-  buildChart('chartManagers','bar',sorted.map(x=>x[0]),
-    [{label:'Выручка',data:sorted.map(x=>x[1]),backgroundColor:'rgba(168,85,247,.8)',borderColor:'#a855f7',borderWidth:2}],
-    {indexAxis:'y'});
-}
-
-// ── ТАБЛИЦА ЗАПИСЕЙ ────────────────────────────────────────────
-function renderTable(data) {
-  const el = document.getElementById('tableContainer');
-  if (!data.length) { el.innerHTML='<div class="empty"><div class="ico">📭</div><p>Нет данных за этот период</p></div>'; return; }
-  const byDate = {};
-  data.forEach(r => { (byDate[r.date]||(byDate[r.date]=[])).push(r); });
-  const dates = Object.keys(byDate).sort().reverse();
-  let html = '<table class="tbl"><thead><tr><th>Дата</th><th>Менеджер</th><th>Канал</th><th>Филиал</th><th>Пакет</th><th style="text-align:right">Сумма</th></tr></thead><tbody>';
-  dates.forEach(d => {
-    const rows = byDate[d];
-    const tot = rows.reduce((s,r)=>s+r.amt,0);
-    html += `<tr style="background:#13132a"><td colspan="5" style="font-weight:700;color:#a855f7">${d}</td><td style="text-align:right;font-weight:700;color:#a855f7">${fmt(tot)}</td></tr>`;
-    rows.forEach(r => {
-      const cc = r.chan==='Онлайн'?'bon':'boff';
-      const bc = r.branch==='НСИТИ'?'bns':'bdm';
-      const w  = r.src==='unknown'?' ⚠️':'';
-      html += `<tr><td style="color:#6b7280;font-size:12px">──</td><td><b>${r.mgr}</b></td><td><span class="badge ${cc}">${r.chan}</span></td><td><span class="badge ${bc}">${r.branch}</span></td><td>${r.pkg}${w}</td><td style="text-align:right;font-weight:700;color:#ec4899">${fmt(r.amt)}</td></tr>`;
-    });
+function renderPlanTable() {
+  const now = new Date();
+  const day = now.getDate();
+  const dim = new Date(now.getFullYear(), now.getMonth()+1, 0).getDate();
+  const sum = arr => arr.reduce((s,r)=>s+r.amt,0);
+  const sumOl = sum(allData.filter(r=>r.chan==='Онлайн'));
+  const sumNs = sum(allData.filter(r=>r.chan==='Оффлайн'&&r.branch==='НСИТИ'));
+  const sumDm = sum(allData.filter(r=>r.chan==='Оффлайн'&&r.branch==='ДАМУ'));
+  const rows = [
+    ['💻 Онлайн',    sumOl, PLANS['Онлайн']],
+    ['🏢 Офф НСИТИ', sumNs, PLANS['Офф НСИТИ']],
+    ['🏢 Офф ДАМУ',  sumDm, PLANS['Офф ДАМУ']],
+    ['💰 Итого',     sumOl+sumNs+sumDm, PLANS['Онлайн']+PLANS['Офф НСИТИ']+PLANS['Офф ДАМУ']],
+  ];
+  const bc = p => p>=100?'#22c55e':p>=70?'#f59e0b':'#f87171';
+  let html = '<thead><tr><th>Направление</th><th>План</th><th>Факт</th><th>% плана</th><th>Прогноз</th><th>% прогноза</th></tr></thead><tbody>';
+  rows.forEach(([lbl,fact,plan]) => {
+    const pct = plan>0 ? Math.round(fact/plan*100) : 0;
+    const fc  = day>0  ? Math.round(fact/day*dim)  : fact;
+    const fpc = plan>0 ? Math.round(fc/plan*100)   : 0;
+    const c=bc(pct),cf=bc(fpc);
+    html+=`<tr><td><strong>${lbl}</strong></td><td>${fmt(plan)}</td><td>${fmt(fact)}</td>
+      <td><span style="background:${c}22;color:${c};padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">${pct}%</span>
+      <div class="pbar-wrap"><div class="pbar" style="width:${Math.min(pct,100)}%;background:${c}"></div></div></td>
+      <td>${fmt(fc)}</td>
+      <td><span style="background:${cf}22;color:${cf};padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700">${fpc}%</span></td></tr>`;
   });
-  el.innerHTML = html + '</tbody></table>';
+  document.getElementById('planTable').innerHTML = html + '</tbody>';
 }
 
-// ── УТИЛИТЫ ────────────────────────────────────────────────────
-function buildChart(id,type,labels,datasets,extra) {
-  if (charts[id]) { charts[id].destroy(); delete charts[id]; }
-  const ctx = document.getElementById(id); if (!ctx) return;
-  charts[id] = new Chart(ctx,{type,data:{labels,datasets},options:{
-    responsive:true,
+function renderDaysChart(data) {
+  const m={};
+  data.forEach(r=>{const d=(r.date||'').slice(0,5);if(!d)return;if(!m[d])m[d]={ol:0,ns:0,dm:0};
+    if(r.chan==='Онлайн')m[d].ol+=r.amt;else if(r.branch==='НСИТИ')m[d].ns+=r.amt;else if(r.branch==='ДАМУ')m[d].dm+=r.amt;});
+  const l=Object.keys(m).sort();
+  buildChart('chartDays','bar',l,[
+    {label:'Онлайн',    data:l.map(d=>m[d].ol),backgroundColor:'rgba(168,85,247,.8)',borderColor:'#a855f7',borderWidth:1},
+    {label:'Офф НСИТИ', data:l.map(d=>m[d].ns),backgroundColor:'rgba(236,72,153,.8)',borderColor:'#ec4899',borderWidth:1},
+    {label:'Офф ДАМУ',  data:l.map(d=>m[d].dm),backgroundColor:'rgba(245,158,11,.8)',borderColor:'#f59e0b',borderWidth:1},
+  ],{stacked:true});
+}
+
+function renderChannelsChart(data) {
+  const sum=arr=>arr.reduce((s,r)=>s+r.amt,0);
+  buildChart('chartChannels','doughnut',['Онлайн','Офф НСИТИ','Офф ДАМУ'],[{
+    data:[sum(data.filter(r=>r.chan==='Онлайн')),sum(data.filter(r=>r.chan==='Оффлайн'&&r.branch==='НСИТИ')),sum(data.filter(r=>r.chan==='Оффлайн'&&r.branch==='ДАМУ'))],
+    backgroundColor:['#a855f7','#ec4899','#f59e0b'],borderWidth:0}]);
+}
+
+function renderManagersChart(data) {
+  const m={};data.forEach(r=>{if(r.mgr)m[r.mgr]=(m[r.mgr]||0)+r.amt;});
+  const s=Object.entries(m).sort((a,b)=>b[1]-a[1]);
+  buildChart('chartManagers','bar',s.map(x=>x[0]),[{label:'Выручка',data:s.map(x=>x[1]),backgroundColor:'rgba(168,85,247,.8)',borderColor:'#a855f7',borderWidth:1}],{indexAxis:'y'});
+}
+
+function renderPackagesChart(data) {
+  const m={};data.forEach(r=>{const p=(r.pkg||'Прочее').split('·')[0].trim()||'Прочее';m[p]=(m[p]||0)+r.amt;});
+  const s=Object.entries(m).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  buildChart('chartPackages','bar',s.map(x=>x[0]),[{label:'Выручка',data:s.map(x=>x[1]),backgroundColor:['#a855f7','#ec4899','#f59e0b','#22c55e','#3b82f6','#f97316','#14b8a6','#8b5cf6'],borderWidth:0}]);
+}
+
+function renderParkPackages(data) {
+  ['НСИТИ','ДАМУ'].forEach(branch => {
+    const id = branch==='НСИТИ' ? 'chartNsitiPkgs' : 'chartDamuPkgs';
+    const m={};
+    data.filter(r=>r.branch===branch).forEach(r=>{const p=(r.pkg||'Прочее').split('·')[0].trim()||'Прочее';m[p]=(m[p]||0)+r.amt;});
+    const s=Object.entries(m).sort((a,b)=>b[1]-a[1]).slice(0,7);
+    const col=branch==='НСИТИ'?'#86efac':'#fdba74';
+    buildChart(id,'bar',s.map(x=>x[0]),[{label:'Выручка',data:s.map(x=>x[1]),backgroundColor:col+'bb',borderColor:col,borderWidth:1}],{indexAxis:'y'});
+  });
+}
+
+function buildChart(id,type,labels,datasets,extra={}) {
+  if(charts[id]){charts[id].destroy();delete charts[id];}
+  const ctx=document.getElementById(id);if(!ctx)return;
+  charts[id]=new Chart(ctx,{type,data:{labels,datasets},options:{responsive:true,
     plugins:{legend:{labels:{color:'#9ca3af',font:{size:11}}},tooltip:{callbacks:{label:c=>' '+fmt(c.parsed.y??c.parsed)}}},
-    scales: type==='doughnut'?{}:{
-      x:{stacked:extra?.stacked,grid:{color:'#1e1e38'},ticks:{color:'#6b7280'}},
-      y:{stacked:extra?.stacked,grid:{color:'#1e1e38'},ticks:{color:'#6b7280',callback:v=>fmtShort(v)}},
-      ...(extra?.indexAxis==='y'?{x:{grid:{color:'#1e1e38'},ticks:{color:'#6b7280',callback:v=>fmtShort(v)}},y:{grid:{color:'#1e1e38'},ticks:{color:'#9ca3af'}}}:{}),
-    },
-    indexAxis:extra?.indexAxis,
-  }});
+    scales:type==='doughnut'?{}:{
+      x:{stacked:extra.stacked,grid:{color:'#1e1e38'},ticks:{color:'#6b7280',font:{size:10},...(extra.indexAxis==='y'?{callback:v=>fmtShort(v)}:{})}},
+      y:{stacked:extra.stacked,grid:{color:'#1e1e38'},ticks:{color:extra.indexAxis==='y'?'#9ca3af':'#6b7280',font:{size:10},...(extra.indexAxis==='y'?{}:{callback:v=>fmtShort(v)})}},
+    },indexAxis:extra.indexAxis}});
 }
 
-function fmt(n)      { return Math.round(n||0).toLocaleString('ru-RU')+' тг'; }
-function fmtShort(n) { if(n>=1e6)return(n/1e6).toFixed(1)+'М';if(n>=1000)return(n/1000).toFixed(0)+'К';return n; }
-function set(id,v)   { const el=document.getElementById(id);if(el)el.textContent=v; }
+function renderTable(data) {
+  const el=document.getElementById('tableContainer');
+  if(!data.length){el.innerHTML='<div class="empty"><div style="font-size:36px;margin-bottom:8px">📭</div><p>Нет данных</p></div>';return;}
+  const byDate={};data.forEach(r=>{(byDate[r.date]||(byDate[r.date]=[])).push(r);});
+  const dates=Object.keys(byDate).sort().reverse();
+  let html='<table class="tbl"><thead><tr><th>Дата</th><th>Менеджер</th><th>Канал</th><th>Филиал</th><th>Пакет</th><th style="text-align:right">Сумма</th></tr></thead><tbody>';
+  dates.forEach(d=>{
+    const rows=byDate[d];const tot=rows.reduce((s,r)=>s+r.amt,0);
+    html+=`<tr style="background:#13132a"><td colspan="5" style="font-weight:700;color:#a855f7">${d}</td><td style="text-align:right;font-weight:700;color:#a855f7">${fmt(tot)}</td></tr>`;
+    rows.forEach(r=>{html+=`<tr><td style="color:#6b7280;font-size:12px">──</td><td><b>${r.mgr}</b></td><td><span class="badge ${r.chan==='Онлайн'?'bon':'boff'}">${r.chan}</span></td><td><span class="badge ${r.branch==='НСИТИ'?'bns':'bdm'}">${r.branch}</span></td><td style="color:#9ca3af">${r.pkg}</td><td style="text-align:right;font-weight:700;color:#ec4899">${fmt(r.amt)}</td></tr>`;});
+  });
+  el.innerHTML=html+'</tbody></table>';
+}
 
-window.addEventListener('load', () => {
-  document.getElementById('apiUrl').value = AUTO_API_URL;
-  renderRnpSection([]); // показать все блоки сразу (пустые)
+function fmt(n){return Math.round(n||0).toLocaleString('ru-RU')+' тг';}
+function fmtShort(n){if(n>=1000000)return(n/1000000).toFixed(1)+'М';if(n>=1000)return(n/1000).toFixed(0)+'К';return n;}
+function set(id,v){const el=document.getElementById(id);if(el)el.textContent=v;}
+
+window.addEventListener('load',()=>{
+  document.getElementById('apiUrl').value=AUTO_API_URL;
   setStatus('Загрузка данных…');
+  renderRnpSection([]);
   loadFromApi();
-  setInterval(loadFromApi, 5*60*1000);
+  setInterval(loadFromApi,5*60*1000);
 });
 </script>
 </body>
