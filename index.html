@@ -258,6 +258,7 @@ async function loadFromApi() {
 async function loadRnpFromApi() {
   const url = document.getElementById('rnpUrl').value.trim();
   if (!url) { alert('Введи URL РНП скрипта'); return; }
+  localStorage.setItem('rnpUrl', url);
   const el = document.getElementById('rnpStatus');
   el.style.color='#f59e0b'; el.textContent='⏳ Загрузка…';
   try {
@@ -545,11 +546,23 @@ function fmtShort(n){if(n>=1000000)return(n/1000000).toFixed(1)+'М';if(n>=1000)
 function set(id,v){const el=document.getElementById(id);if(el)el.textContent=v;}
 
 window.addEventListener('load',()=>{
-  document.getElementById('apiUrl').value=AUTO_API_URL;
+  // Восстановить сохранённые URL
+  document.getElementById('apiUrl').value = localStorage.getItem('apiUrl') || AUTO_API_URL;
+  const savedRnp = localStorage.getItem('rnpUrl');
+  if (savedRnp) document.getElementById('rnpUrl').value = savedRnp;
+
+  // Сохранять URL при изменении
+  document.getElementById('apiUrl').addEventListener('change', e => localStorage.setItem('apiUrl', e.target.value.trim()));
+  document.getElementById('rnpUrl').addEventListener('change', e => localStorage.setItem('rnpUrl', e.target.value.trim()));
+
   setStatus('Загрузка данных…');
   renderRnpSection([]);
   loadFromApi();
-  setInterval(loadFromApi,5*60*1000);
+
+  // Авто-загрузить РНП если URL сохранён
+  if (savedRnp) loadRnpFromApi();
+
+  setInterval(loadFromApi, 5*60*1000);
 });
 </script>
 </body>
