@@ -249,6 +249,7 @@ async function loadFromApi() {
       '3. Обнови URL и нажми «Загрузить» снова'
     );
     const d = JSON.parse(text);
+    if (d.rnp) { rnpExtra = d.rnp; } // если основной GAS вернул RNP-данные
     loadData(d.data || d);
   } catch(e) { setStatus(''); alert('Ошибка: ' + e.message); }
 }
